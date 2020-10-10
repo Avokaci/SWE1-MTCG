@@ -4,8 +4,7 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    class Card
+    class Player
     {
-        enum ElementType { fire,water,normal};
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MonsterTradingCardGame.Communication
 {
-    public class Class1
+    public class ILogWriter
     {
     }
 }

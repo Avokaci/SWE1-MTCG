@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MonsterTradingCardGame.Lib.Monsters
+namespace MonsterTradingCardGame.Communication
 {
-    class Dragon
+    class DefaultLoggingService
     {
     }
 }
-            
