@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "glxxyKnejL+yqr+vVJvmoyRfMO02hzpZ1mGFlAmEc/xXyH9zYc3gd0YKfu3k5SRo0PhwfDnOSTiE35tcRHec6g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\burak_y46me01\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\burak_y46me01\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
