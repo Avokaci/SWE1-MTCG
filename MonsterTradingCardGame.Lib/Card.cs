@@ -4,8 +4,24 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    class Card
+    public class Card
     {
-        enum ElementType { fire,water,normal};
+        //instances
+        protected string _name;
+        protected ElementType _element;
+
+        //constructors
+        public Card(ElementType element, string name)
+        {
+            this._name = name;
+            this._element = element;
+        }
+
+        //access modifiers
+        public ElementType Element { get => _element; set => _element = value; }
+
+        //methods
+
+
     }
 }

@@ -4,7 +4,17 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    class Game
+    public class Game
     {
+        bool attackerToken;
+        public void battle()
+        {
+
+        }
+        public void checkEffectiveness()
+        {
+
+        }
+
     }
 }

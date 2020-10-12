@@ -1,0 +1,13 @@
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.exe
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.deps.json
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.runtimeconfig.json
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.runtimeconfig.dev.json
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.csprojAssemblyReference.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.AssemblyInfoInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.AssemblyInfo.cs
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.genruntimeconfig.cache

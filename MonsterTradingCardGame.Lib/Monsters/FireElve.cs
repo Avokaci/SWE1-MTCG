@@ -4,7 +4,17 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib.Monsters
 {
-    class FireElve
+    public class FireElve : MonsterCard
     {
+        //instances
+
+        //constructors
+        public FireElve(ElementType element, string name, int damage) : base(element, name, damage)
+        {
+        }
+        //access modifiers
+
+        //methods
+
     }
 }
