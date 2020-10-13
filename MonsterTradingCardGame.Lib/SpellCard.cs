@@ -8,7 +8,7 @@ namespace MonsterTradingCardGame.Lib
     {
         public SpellCard(ElementType element, string name) : base(element, name)
         {
-
+            effect();
         }
 
         //instances

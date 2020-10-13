@@ -8,16 +8,22 @@ namespace MonsterTradingCardGame.Lib
     {
         //instances
         protected int _damage;
+   
 
         //constructors
         public MonsterCard(ElementType element, string name, int damage) : base(element, name)
         {
-            _damage = Damage;
+          
+            _damage = damage;
+           
         }
 
         //access modifiers
-        public int Damage { get => _damage; set => _damage = value; }
+        public int Damage { get => _damage; set { if (value >= 0 && value <= 100) { _damage = value; } } }
         //methods
 
+        
+
+      
     }
 }

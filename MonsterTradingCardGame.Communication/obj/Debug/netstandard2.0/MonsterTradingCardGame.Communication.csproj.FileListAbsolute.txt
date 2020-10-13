@@ -1,0 +1,9 @@
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\bin\Debug\netstandard2.0\MonsterTradingCardGame.Communication.deps.json
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\bin\Debug\netstandard2.0\MonsterTradingCardGame.Communication.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\bin\Debug\netstandard2.0\MonsterTradingCardGame.Communication.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.csprojAssemblyReference.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.AssemblyInfoInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.AssemblyInfo.cs
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MonsterTradingCardGame.Communication.pdb
