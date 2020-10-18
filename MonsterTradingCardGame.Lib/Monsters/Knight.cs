@@ -11,6 +11,10 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //constructors
         public Knight(ElementType element, string name, int damage) : base(element, name, damage)
         {
+            element = ElementType.normal;
+            name = "Igris";
+            damage = 50;
+
         }
         //access modifiers
 

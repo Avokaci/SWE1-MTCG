@@ -11,6 +11,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //constructors
         public Goblin(ElementType element, string name, int damage) : base(element, name, damage)
         {
+            element = ElementType.normal;
+            name = "Goburou";
+            damage = 40;
         }
         //access modifiers
 

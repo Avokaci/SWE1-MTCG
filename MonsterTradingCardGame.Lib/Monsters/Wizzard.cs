@@ -11,6 +11,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //constructors
         public Wizzard(ElementType element, string name, int damage) : base(element, name, damage)
         {
+            element = ElementType.water;
+            name = "Gandalf";
+            damage = 70;
         }
         //access modifiers
 

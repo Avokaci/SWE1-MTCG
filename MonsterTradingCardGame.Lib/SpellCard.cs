@@ -4,24 +4,19 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    class SpellCard : Card
+    public class SpellCard : Card
     {
-        public SpellCard(ElementType element, string name) : base(element, name)
-        {
-            effect();
-        }
+
 
         //instances
 
         //constructors
-
+        public SpellCard(ElementType element, string name, int damage) : base(element, name, damage)
+        {
+        }
         //access modifiers
 
         //methods
-        public void effect()
-        {
-
-        }
 
     }
 }

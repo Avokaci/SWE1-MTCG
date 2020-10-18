@@ -11,6 +11,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //constructors
         public Kraken(ElementType element, string name, int damage) : base(element, name, damage)
         {
+            element = ElementType.water;
+            name = "Cthulhu";
+            damage = 100;
         }
         //access modifiers
 

@@ -11,6 +11,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //constructors
         public Ork(ElementType element, string name, int damage) : base(element, name, damage)
         {
+            element = ElementType.normal;
+            name = "Garrosh Hellscream";
+            damage = 80;
         }
         //access modifiers
 
