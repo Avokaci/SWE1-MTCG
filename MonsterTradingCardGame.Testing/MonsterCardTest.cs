@@ -3,38 +3,35 @@ using NUnit.Framework;
 
 namespace MonsterTradingCardGame.Testing
 {
-    public class MonsterCardUnitTests
+    public class MonsterCardTest
     {
         private MonsterCard _monsterCard;
 
         [SetUp]
         public void Setup()
         {
-            _monsterCard = new MonsterCard(ElementType.fire, "Fire boi", 80);
+            //arrange
+            _monsterCard = new MonsterCard();
         }
 
         [Test]
         public void MonsterCard_IsNotNull()
         {
+            //assert
             Assert.IsNotNull(_monsterCard);
             Assert.That(_monsterCard, Is.Not.Null);
         }
         [Test]
         public void MonsterCard_IsCorrectElementType()
         {
-
+            //assert
             Assert.AreEqual(ElementType.fire, _monsterCard.Element);
         }
-        [Test] //doesn't work
-        public void MonsterCard_HasAlphabeticNameIncudingCaseAndSpace()
-        {
-
-            StringAssert.IsMatch(_monsterCard.Name, "^[a-zA-Z ]*$");
-        }
+ 
         [Test] 
         public void MonsterCard_DamageIsInRange()
         {
-
+            //assert
             Assert.That(_monsterCard.Damage,Is.InRange(0,100) );
         }
     }

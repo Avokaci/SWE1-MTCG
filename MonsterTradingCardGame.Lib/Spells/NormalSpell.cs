@@ -6,9 +6,9 @@ namespace MonsterTradingCardGame.Lib.Spells
 {
     public class NormalSpell : SpellCard
     {
-        public NormalSpell(ElementType element, string name, int damage) : base(element, name, damage)
+        public NormalSpell()
         {
-            element = ElementType.normal;
+            Element = ElementType.normal;
             name = "Allmighty push";
             damage = 60;
         }

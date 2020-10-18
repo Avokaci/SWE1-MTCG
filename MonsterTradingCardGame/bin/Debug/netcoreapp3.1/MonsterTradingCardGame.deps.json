@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "MonsterTradingCardGame/1.0.0": {
+        "dependencies": {
+          "MonsterTradingCardGame.Lib": "1.0.0"
+        },
         "runtime": {
           "MonsterTradingCardGame.dll": {}
+        }
+      },
+      "MonsterTradingCardGame.Lib/1.0.0": {
+        "runtime": {
+          "MonsterTradingCardGame.Lib.dll": {}
         }
       }
     }
   },
   "libraries": {
     "MonsterTradingCardGame/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MonsterTradingCardGame.Lib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

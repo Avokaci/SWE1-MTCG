@@ -9,9 +9,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public Knight(ElementType element, string name, int damage) : base(element, name, damage)
+        public Knight()
         {
-            element = ElementType.normal;
+            Element = ElementType.normal;
             name = "Igris";
             damage = 50;
 

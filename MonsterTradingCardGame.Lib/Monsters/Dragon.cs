@@ -10,9 +10,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public Dragon(ElementType element, string name, int damage) : base(element, name, damage)
+        public Dragon()
         {
-            element = ElementType.fire;
+            Element = ElementType.fire;
             name = "Smaug";
             damage = 90;
         }

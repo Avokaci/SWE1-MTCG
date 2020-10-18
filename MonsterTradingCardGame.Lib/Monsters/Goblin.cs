@@ -9,9 +9,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public Goblin(ElementType element, string name, int damage) : base(element, name, damage)
+        public Goblin()
         {
-            element = ElementType.normal;
+            Element = ElementType.normal;
             name = "Goburou";
             damage = 40;
         }

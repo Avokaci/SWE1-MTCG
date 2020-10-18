@@ -9,9 +9,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public Wizzard(ElementType element, string name, int damage) : base(element, name, damage)
+        public Wizzard()
         {
-            element = ElementType.water;
+            Element = ElementType.water;
             name = "Gandalf";
             damage = 70;
         }

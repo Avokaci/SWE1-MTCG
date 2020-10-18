@@ -11,3 +11,6 @@ C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.genruntimeconfig.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.Lib.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\bin\Debug\netcoreapp3.1\MonsterTradingCardGame.Lib.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.csproj.CopyComplete

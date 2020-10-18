@@ -9,9 +9,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public FireElve(ElementType element, string name, int damage) : base(element, name, damage)
+        public FireElve()
         {
-            element = ElementType.fire;
+            Element = ElementType.fire;
             name = "Ifrit";
             damage = 60;
 

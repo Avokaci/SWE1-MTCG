@@ -3,13 +3,15 @@ using MonsterTradingCardGame.Lib.Spells;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
     public class Game
     {
-        bool attackerToken;
+      
+       
         public Card battle(Card ownCard, Card enemyCard)
         {
 
@@ -160,5 +162,7 @@ namespace MonsterTradingCardGame.Lib
         }
 
 
+       
+        
     }
 }

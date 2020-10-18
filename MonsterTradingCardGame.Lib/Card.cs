@@ -8,16 +8,14 @@ namespace MonsterTradingCardGame.Lib
     public class Card
     {
         //instances
-        private string name;
+        static protected string name;
         protected ElementType _element;
-        private int damage;
+        static protected int damage;
 
         //constructors
-        public Card(ElementType element, string name, int damage)
+        public Card()
         {
-            this.Name = name;
-            this._element = element;
-            this.Damage = damage;
+            
         }
 
         //access modifiers

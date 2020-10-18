@@ -6,11 +6,11 @@ namespace MonsterTradingCardGame.Lib.Spells
 {
     public class WaterSpell : SpellCard
     {
-        public WaterSpell(ElementType element, string name, int damage) : base(element, name, damage)
+        public WaterSpell()
         {
-            element = ElementType.water;
+            Element = ElementType.water;
             name = "Splash";
-            damage = 50;
+            damage = 55;
         }
     }
 }

@@ -91,8 +91,10 @@ C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Tes
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.csprojAssemblyReference.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.AssemblyInfoInputs.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.AssemblyInfo.cs
-C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.csproj.CoreCompileInputs.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.csproj.CopyComplete
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.genruntimeconfig.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MonsterTradingCardGame.Testing.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Testing\bin\Debug\netcoreapp3.1\Moq.dll

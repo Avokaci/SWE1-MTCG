@@ -9,8 +9,9 @@ namespace MonsterTradingCardGame.Lib
         //instances
 
         //constructors
-        public MonsterCard(ElementType element, string name, int damage) : base(element, name, damage)
+        public MonsterCard()
         {
+            
         }
 
         //access modifiers

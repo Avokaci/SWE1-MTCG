@@ -11,7 +11,7 @@ namespace MonsterTradingCardGame.Lib
         //instances
 
         //constructors
-        public SpellCard(ElementType element, string name, int damage) : base(element, name, damage)
+        public SpellCard()
         {
         }
         //access modifiers

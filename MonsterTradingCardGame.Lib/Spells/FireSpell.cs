@@ -6,9 +6,9 @@ namespace MonsterTradingCardGame.Lib.Spells
 {
     public class FireSpell : SpellCard
     {
-        public FireSpell(ElementType element, string name, int damage) : base(element, name, damage)
+        public FireSpell()
         {
-            element = ElementType.fire;
+            Element = ElementType.fire;
             name = "Inferno";
             damage = 70; 
 

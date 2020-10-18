@@ -9,9 +9,9 @@ namespace MonsterTradingCardGame.Lib.Monsters
         //instances
 
         //constructors
-        public Kraken(ElementType element, string name, int damage) : base(element, name, damage)
+        public Kraken()
         {
-            element = ElementType.water;
+            Element = ElementType.water;
             name = "Cthulhu";
             damage = 100;
         }
