@@ -112,9 +112,9 @@ namespace MonsterTradingCardGame.Lib
                 {ownCard.Damage = (int)(ownCard.Damage * 0.5);}
 
                 if (checkEffectiveness(enemyCard, ownCard))
-                {enemyCard.Damage = ownCard.Damage * 2;}
+                {enemyCard.Damage = enemyCard.Damage * 2;}
                 else
-                {enemyCard.Damage = (int)(ownCard.Damage * 0.5);}
+                {enemyCard.Damage = (int)(enemyCard.Damage * 0.5);}
 
 
                 //Damage Comparisson
@@ -136,28 +136,17 @@ namespace MonsterTradingCardGame.Lib
             {
                 return true;
             }
-            if (ownCard.Element == ElementType.fire && enemyCard.Element == ElementType.water)
-            {
-                return false;
-            }
-
+          
             if (ownCard.Element == ElementType.fire && enemyCard.Element == ElementType.normal)
             {
                 return true;
             }
-            if (ownCard.Element == ElementType.normal && enemyCard.Element == ElementType.fire)
-            {
-                return false;
-            }
-
+           
             if (ownCard.Element == ElementType.normal && enemyCard.Element == ElementType.water)
             {
                 return true;
             }
-            if (ownCard.Element == ElementType.water && enemyCard.Element == ElementType.normal)
-            {
-                return false;
-            }
+         
             return false;
         }
 
