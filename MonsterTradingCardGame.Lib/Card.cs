@@ -8,9 +8,9 @@ namespace MonsterTradingCardGame.Lib
     public class Card
     {
         //instances
-        static protected string name;
+        protected string name;
         protected ElementType _element;
-        static protected int damage;
+        protected int damage;
 
         //constructors
         public Card()
