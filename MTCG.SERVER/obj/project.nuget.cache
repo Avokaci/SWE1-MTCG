@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5aP6RW3x+vvWvpfPicS/+OWDjwKydIX0dJl9QKBNxSe0iLSi8vz0/zjpykap8fbBq+KvPl8a8Kl5QtfF7mCdeg==",
+  "dgSpecHash": "EwAnJSZ3fdZmsB1s46Z0DT4hsuUNzxe+94kojO54kMOSZBjy10JK1ZHYZI4mUBgdfAgk090We07VDiztqsDP0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\MTCG.Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\burak_y46me01\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

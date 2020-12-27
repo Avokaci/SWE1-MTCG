@@ -1,11 +1,87 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "MTCG.Communication/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/MTCG.Communication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MTCG.Communication.dll": {}
+        }
+      },
+      "MTCG.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/MTCG.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MTCG.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "MTCG.Communication/1.0.0": {
+      "type": "project",
+      "path": "../MonsterTradingCardGame.Communication/MTCG.Communication.csproj",
+      "msbuildProject": "../MonsterTradingCardGame.Communication/MTCG.Communication.csproj"
+    },
+    "MTCG.Core/1.0.0": {
+      "type": "project",
+      "path": "../MonsterTradingCardGame.Core/MTCG.Core.csproj",
+      "msbuildProject": "../MonsterTradingCardGame.Core/MTCG.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "MTCG.Communication >= 1.0.0",
+      "MTCG.Core >= 1.0.0",
+      "Newtonsoft.Json >= 12.0.3"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\burak_y46me01\\.nuget\\packages\\": {}
@@ -13,9 +89,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\MTCG.SERVER.csproj",
-      "projectName": "MTCG.SERVER",
-      "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\MTCG.SERVER.csproj",
+      "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\MTCG.Server.csproj",
+      "projectName": "MTCG.Server",
+      "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\MTCG.Server.csproj",
       "packagesPath": "C:\\Users\\burak_y46me01\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MTCG.SERVER\\obj\\",
       "projectStyle": "PackageReference",
@@ -32,7 +108,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MTCG.Communication.csproj": {
+              "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MTCG.Communication.csproj"
+            },
+            "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Core\\MTCG.Core.csproj": {
+              "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Core\\MTCG.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -43,6 +126,12 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

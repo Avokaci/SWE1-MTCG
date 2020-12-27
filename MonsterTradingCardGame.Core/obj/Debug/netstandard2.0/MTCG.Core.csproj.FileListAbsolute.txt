@@ -1,0 +1,9 @@
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MTCG.Core.deps.json
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MTCG.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MTCG.Core.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.csprojAssemblyReference.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.AssemblyInfoInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.AssemblyInfo.cs
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.pdb

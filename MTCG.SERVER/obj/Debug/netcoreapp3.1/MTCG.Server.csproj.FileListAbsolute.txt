@@ -6,7 +6,14 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\b
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.AssemblyInfoInputs.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.AssemblyInfo.cs
-C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csproj.CoreCompileInputs.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.genruntimeconfig.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Communication.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Communication.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csprojAssemblyReference.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csproj.CopyComplete
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Core.pdb

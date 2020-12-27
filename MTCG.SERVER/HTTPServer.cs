@@ -9,11 +9,19 @@ using System.Reflection;
 using Microsoft.VisualBasic.CompilerServices;
 using System.Threading;
 using System.Text.RegularExpressions;
+using MonsterTradingCardGame.Communication;
+using MonsterTradingCardGame.Core;
+using System.Text.Json;
 
 namespace RESTHTTPWebservice
 {
     public class HTTPServer
     {
+        LogWriter logger = new LogWriter();
+        StreamWriter w = File.AppendText("log.txt");
+        //StreamReader r = File.OpenText("log.txt");
+        List<Account> accs = new List<Account>();
+
         //class variables
         TcpListener server = null;
         RequestContext req = null;
@@ -45,20 +53,23 @@ namespace RESTHTTPWebservice
                 {
 
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("\n\nClient connected");
+                    logger.LogToConsole("Client connected");
                     sr = new StreamReader(client.GetStream());
                     sw = new StreamWriter(client.GetStream());
-
+                   
                     readRequest(sr);
                     doHTTPMethod(req, sw);
 
                     client.Close();
+                    logger.LogToConsole("Client disconnected");
+
+
 
                 }
             }
             catch (SocketException ex)
             {
-                Console.WriteLine("SocketException: " + ex);
+                logger.LogToConsole("SocketException: " + ex);
             }
             finally
             {
@@ -124,131 +135,191 @@ namespace RESTHTTPWebservice
         }
         private void doHTTPMethod(RequestContext req, StreamWriter sw)
         {
+            string[] splittedPath = req.Path.Split("/");
+            
+
             if (req.Verb.Equals("GET"))
             {
                 if (req == null)
                 {
-                    Console.WriteLine("request wasn't executed properly. Request not found!");
+                    logger.LogToConsole("request wasn't executed properly. Request not found!");
                     sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                 }
-                else if (req.Path.Equals("/messages"))
+
+                if (splittedPath[1].Equals("users"))
                 {
-                    foreach (RequestContext item in requests)
+                    if (splittedPath[2] != null)
                     {
-                        Console.WriteLine("\n\nrequest: \n" + item.ToString());
-                    }
-                    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-                }
-                else
-                {
-                    foreach (RequestContext item in requests)
-                    {
-                        if (item.Path.Equals(req.Path))
+                        foreach (Account item in accs)
                         {
-                            Console.WriteLine("\n\nrequest: \n" + item.ToString());
+                            if(item.Username == splittedPath[2])
+                            {
+                                logger.LogToConsole("User found: Username " + item.Username + " Password " + item.Password );
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            }
                         }
-                    }
-                    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                    }                 
                 }
+                if (splittedPath[1].Equals("cards"))
+                {
+
+                }
+                if (splittedPath[1].Equals("deck"))
+                {
+
+                }
+                if (splittedPath[1].Equals("stats"))
+                {
+
+                }
+                if (splittedPath[1].Equals("score"))
+                {
+
+                }
+                if (splittedPath[1].Equals("tradings"))
+                {
+
+                }
+
+
+                //else if (req.Path.Equals("/messages"))
+                //{
+                //    foreach (RequestContext item in requests)
+                //    {
+                //        logger.loggerToConsole("\n\nrequest: \n" + item.ToString());
+                //    }
+                //    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+
+                //}
+                //else
+                //{
+                //    foreach (RequestContext item in requests)
+                //    {
+                //        if (item.Path.Equals(req.Path))
+                //        {
+                //            logger.loggerToConsole("\n\nrequest: \n" + item.ToString());
+                //        }
+                //    }
+                //    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                //}
             }
             if (req.Verb.Equals("POST"))
             {
                 if (req == null)
                 {
-                    Console.WriteLine("request wasn't executed properly. Request not found!");
+                    logger.LogToConsole("request wasn't executed properly. Request not found!");
                     sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                 }
-                if (req.Path == "/messages")
+                if(splittedPath[1].Equals("users"))
                 {
-                    Console.WriteLine("request wasn't executed properly. Can't add messagelist itself!");
-                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                    bool closeSW = false;
+                    Account acc = JsonSerializer.Deserialize<Account>(req.Payload);
+                    foreach (Account item in accs)
+                    {
+                        if(item.Username == acc.Username)
+                        {
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            closeSW = true;
+                        }                     
+                    }
+                    if (closeSW == false)
+                    {
+                        accs.Add(acc);
+                        logger.LogToConsole("User " + acc.Username + " succesfully created ");
+                        sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                    }
                 }
-                else if (req.Payload == "")
+                if (splittedPath[1].Equals("sessions"))
                 {
-                    requests.Add(req);
-                    Console.WriteLine("No content in the Payload");
-                    sendResponse(sw, "204 NO CONTENT", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+
                 }
-                else
+                if (splittedPath[1].Equals("packages"))
                 {
-                    requests.Add(req);
-                    Console.WriteLine("Request succesfully added");
-                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+
+                }
+                if (splittedPath[1].Equals("transactions/packages"))
+                {
+
+                }
+                if (splittedPath[1].Equals("battles"))
+                {
+
+                }
+                if (splittedPath[1].Equals("tradings"))
+                {
+
                 }
 
+                
 
             }
             if (req.Verb.Equals("PUT"))
             {
                 if (req == null)
                 {
-                    Console.WriteLine("request wasn't executed properly. Request not found!");
+                    logger.LogToConsole("request wasn't executed properly. Request not found!");
                     sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                 }
-                if (req.Path == "/messages")
+                if (splittedPath[1].Equals("users"))
                 {
-                    Console.WriteLine("request wasn't executed properly. Can't change the messagelist itself!");
-                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                   
+                  
+                    
                 }
-                else
+                if (req.Path.Equals("/deck"))
                 {
-                    for (int i = 0; i < requests.Count; i++)
-                    {
-                        if (requests[i].Path.Equals(req.Path))
-                        {
-                            string[] splitted = req.Path.Split('/');
-                            int msgId = Int32.Parse(splitted[2]);
-                            requests[msgId - 1].Payload = req.Payload;
 
-                            requests[msgId - 1].HeaderLines["Content-Length"] = req.Payload.Length.ToString();
-                        }
-                    }
-                    Console.WriteLine("request succesfully changed");
-                    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-
-                    #region Failures
-                    //foreach is read only!!!
-                    //foreach (RequestContext item in requests)
-                    //{                   
-                    //    if (item.Path.Equals(req.Path))
-                    //    {
-                    //        string[] splitted = req.Path.Split('/');
-                    //        int msgId = Int32.Parse(splitted[2]);
-                    //        requests[msgId-1].Payload = item.Payload;
-
-                    //    }
-                    //}   
-                    #endregion
                 }
+                //if (req.Path == "/messages")
+                //{
+                //    logger.loggerToConsole("request wasn't executed properly. Can't change the messagelist itself!");
+                //    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                //}
+                //else
+                //{
+                //    for (int i = 0; i < requests.Count; i++)
+                //    {
+                //        if (requests[i].Path.Equals(req.Path))
+                //        {
+                //            string[] splitted = req.Path.Split('/');
+                //            int msgId = Int32.Parse(splitted[2]);
+                //            requests[msgId - 1].Payload = req.Payload;
+
+                //            requests[msgId - 1].HeaderLines["Content-Length"] = req.Payload.Length.ToString();
+                //        }
+                //    }
+                //    logger.loggerToConsole("request succesfully changed");
+                //    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);                  
+                //}
 
             }
             if (req.Verb.Equals("DELETE"))
             {
                 if (req == null)
                 {
-                    Console.WriteLine("request wasn't executed properly. Request not found!");
+                    logger.LogToConsole("request wasn't executed properly. Request not found!");
                     sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                 }
-                if (req.Path == "/messages")
-                {
-                    Console.WriteLine("request wasn't executed properly. Can't delete the messagelist itself!");
-                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-                }
+                //if (req.Path == "/messages")
+                //{
+                //    logger.loggerToConsole("request wasn't executed properly. Can't delete the messagelist itself!");
+                //    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                //}
 
-                else
-                {
-                    for (int i = 0; i < requests.Count; i++)
-                    {
-                        if (requests[i].Path.Equals(req.Path))
-                        {
-                            string[] splitted = req.Path.Split('/');
-                            int msgId = Int32.Parse(splitted[2]);
-                            requests.RemoveAt(msgId - 1);
-                        }
-                    }
-                    Console.WriteLine("request succesfully deleted");
-                    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-                }
+                //else
+                //{
+                //    for (int i = 0; i < requests.Count; i++)
+                //    {
+                //        if (requests[i].Path.Equals(req.Path))
+                //        {
+                //            string[] splitted = req.Path.Split('/');
+                //            int msgId = Int32.Parse(splitted[2]);
+                //            requests.RemoveAt(msgId - 1);
+                //        }
+                //    }
+                //    logger.loggerToConsole("request succesfully deleted");
+                //    sendResponse(sw, "200 OK", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                //}
 
             }
         }
@@ -257,7 +328,7 @@ namespace RESTHTTPWebservice
         {
             sw.Write(version + " " + statusCode + "\r\n");
             sw.Write("host: " + host + "\r\n");
-            sw.Write("Content-Type: " + "text/plain\r\n");
+            sw.Write("Content-Type: " + "application/json\r\n");
             sw.Write("Content-Length: " + payload.Length + "\r\n");
             sw.Write("\r\n");
             sw.Write(payload);
