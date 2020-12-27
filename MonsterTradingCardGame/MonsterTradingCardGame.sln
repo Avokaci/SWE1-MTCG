@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterTradingCardGame", "MonsterTradingCardGame.csproj", "{59D0EC0A-873A-4E42-B8C7-F963CE3E9837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTCG.Lib", "..\MonsterTradingCardGame.Lib\MTCG.Lib.csproj", "{FD5BE401-8CB7-4DA4-99DB-4227870C6799}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterTradingCardGame.Lib", "..\MonsterTradingCardGame.Lib\MonsterTradingCardGame.Lib.csproj", "{FD5BE401-8CB7-4DA4-99DB-4227870C6799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTCG.Communication", "..\MonsterTradingCardGame.Communication\MTCG.Communication.csproj", "{C329E0A7-4C66-4D21-83E0-3E7E150308C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterTradingCardGame.Communication", "..\MonsterTradingCardGame.Communication\MonsterTradingCardGame.Communication.csproj", "{C329E0A7-4C66-4D21-83E0-3E7E150308C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTCG.Core", "..\MonsterTradingCardGame.Core\MTCG.Core.csproj", "{96C55EE4-8874-488D-A14D-DAEE549F4BCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterTradingCardGame.Core", "..\MonsterTradingCardGame.Core\MonsterTradingCardGame.Core.csproj", "{96C55EE4-8874-488D-A14D-DAEE549F4BCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTCG.Testing", "..\MonsterTradingCardGame.Testing\MTCG.Testing.csproj", "{1E09D612-46EB-46AD-B630-F0BECFC55FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterTradingCardGame.Testing", "..\MonsterTradingCardGame.Testing\MonsterTradingCardGame.Testing.csproj", "{1E09D612-46EB-46AD-B630-F0BECFC55FA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTCG.Server", "..\MTCG.SERVER\MTCG.Server.csproj", "{E45A85AA-B894-425A-85DB-C1A130E11676}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59D0EC0A-873A-4E42-B8C7-F963CE3E9837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59D0EC0A-873A-4E42-B8C7-F963CE3E9837}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59D0EC0A-873A-4E42-B8C7-F963CE3E9837}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59D0EC0A-873A-4E42-B8C7-F963CE3E9837}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD5BE401-8CB7-4DA4-99DB-4227870C6799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD5BE401-8CB7-4DA4-99DB-4227870C6799}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD5BE401-8CB7-4DA4-99DB-4227870C6799}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{1E09D612-46EB-46AD-B630-F0BECFC55FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E09D612-46EB-46AD-B630-F0BECFC55FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E09D612-46EB-46AD-B630-F0BECFC55FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45A85AA-B894-425A-85DB-C1A130E11676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45A85AA-B894-425A-85DB-C1A130E11676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45A85AA-B894-425A-85DB-C1A130E11676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45A85AA-B894-425A-85DB-C1A130E11676}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

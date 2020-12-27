@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UVmWezeVfGhIwXlcpWOQNnbGTTikWYwPJXEdjFzW7jdO7MOKY8QjVjs5jCDrHiTAQsJK3RpUTxTEWjLjVpTzfw==",
+  "dgSpecHash": "AQfiU+4Hi+e0dicZHDTtER8JV7kuR6n+whdqpYgPO4XAArEFtIQdUxUT5RV1vNCkHxzjgLW2Itl8EIC5cOgcNw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj",
+  "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MTCG.Communication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\burak_y46me01\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\burak_y46me01\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

@@ -1,0 +1,12 @@
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.exe
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.deps.json
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.runtimeconfig.json
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.runtimeconfig.dev.json
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Server.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.AssemblyInfoInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.AssemblyInfo.cs
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.genruntimeconfig.cache

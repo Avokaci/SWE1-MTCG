@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj": {}
+    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj": {
+    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj",
+        "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj",
         "projectName": "MonsterTradingCardGame.Lib",
-        "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj",
+        "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\MonsterTradingCardGame.Lib.csproj",
         "packagesPath": "C:\\Users\\burak_y46me01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\obj\\",
+        "outputPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Lib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\burak_y46me01\\AppData\\Roaming\\NuGet\\NuGet.Config",

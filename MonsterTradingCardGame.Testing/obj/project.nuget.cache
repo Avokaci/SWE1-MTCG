@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s1Y0qxTfBQ0vHSHafIAoZ5YSa9IfwYEpsiNvJS+uaEwzZQN0QKEwMBeMMRpw141+ibvc7C2wBqrKtm+CsYQ74A==",
+  "dgSpecHash": "89ZtxgiAlqFHK3IwURjy+KRU+XqsfPXKVTKj9xLXAmSkogU1mh1P/u2nJDs4YnsaSPo5hSYNCYfqeAmL4dNxgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Testing\\MonsterTradingCardGame.Testing.csproj",
+  "projectFilePath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Testing\\MTCG.Testing.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\burak_y46me01\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\burak_y46me01\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",

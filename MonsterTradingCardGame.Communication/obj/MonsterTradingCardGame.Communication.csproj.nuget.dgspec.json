@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj": {}
+    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj": {
+    "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj",
+        "projectUniqueName": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj",
         "projectName": "MonsterTradingCardGame.Communication",
-        "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj",
+        "projectPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\MonsterTradingCardGame.Communication.csproj",
         "packagesPath": "C:\\Users\\burak_y46me01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\SWE\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\obj\\",
+        "outputPath": "C:\\Users\\burak_y46me01\\OneDrive\\Desktop\\Neuer Ordner (2)\\SWE1-MTCG\\MonsterTradingCardGame.Communication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\burak_y46me01\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MonsterTradingCardGame.Lib\MonsterTradingCardGame.Lib.csproj" />
+    <ProjectReference Include="..\MonsterTradingCardGame.Lib\MTCG.Lib.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,3 +7,12 @@ C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Cor
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.csproj.CoreCompileInputs.cache
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\SWE\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MonsterTradingCardGame.Core.deps.json
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MonsterTradingCardGame.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MonsterTradingCardGame.Core.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.csprojAssemblyReference.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.AssemblyInfoInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.AssemblyInfo.cs
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.csproj.CoreCompileInputs.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MonsterTradingCardGame.Core.pdb
