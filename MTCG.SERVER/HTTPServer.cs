@@ -13,31 +13,54 @@ using MonsterTradingCardGame.Communication;
 using MonsterTradingCardGame.Core;
 using System.Text.Json;
 using MonsterTradingCardGame.Lib;
+using Npgsql;
+
 
 namespace RESTHTTPWebservice
 {
     public class HTTPServer
     {
+
+        //db 
+        string _connectionString;
+        NpgsqlConnection con;
+        NpgsqlCommand cmd;
+        //logging
         LogWriter logger = new LogWriter();
         StreamWriter w = File.AppendText("log.txt");
         //StreamReader r = File.OpenText("log.txt");
+        //game 
         List<User> users = new List<User>();
-        List<Card> package;
-        
+        List<Card> package;       
         string token = "";
 
         //class variables
         TcpListener server = null;
         RequestContext req = null;
-        List<RequestContext> requests = null;
+      
 
         //Constructor
         public HTTPServer(int port)
         {
-            server = new TcpListener(IPAddress.Any, port);
-            requests = new List<RequestContext>();
-        }
+            _connectionString = "Host=localhost;Username=postgres;Password=s$cret;Database=mtcg";
+            con = new NpgsqlConnection(_connectionString);
+            con.Open();
+            string sql = "SELECT version()";
+            cmd = new NpgsqlCommand(sql, con);
+            var version = cmd.ExecuteScalar().ToString();
+            Console.WriteLine($"PostgreSQL version: {version}");
+            //Create tables
+            cmd.CommandText = "DROP TABLE IF EXISTS users";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = @"CREATE TABLE users(Id serial , 
+                                Username VARCHAR(255) unique,
+                                Password VARCHAR(255), Name VARCHAR(255), 
+                                Bio VARCHAR(255), Image VARCHAR(255),
+                                Token VARCHAR(255))";
+            cmd.ExecuteNonQuery();
 
+            server = new TcpListener(IPAddress.Any, port);          
+        }
         public void start()
         {
             server.Start();
@@ -55,20 +78,14 @@ namespace RESTHTTPWebservice
             {
                 while (true)
                 {
-
                     TcpClient client = server.AcceptTcpClient();
                     //logger.LogToConsole("Client connected");
                     sr = new StreamReader(client.GetStream());
-                    sw = new StreamWriter(client.GetStream());
-                   
+                    sw = new StreamWriter(client.GetStream());              
                     readRequest(sr);
                     doHTTPMethod(req, sw);
-
                     client.Close();
                     //logger.LogToConsole("Client disconnected");
-
-
-
                 }
             }
             catch (SocketException ex)
@@ -94,42 +111,25 @@ namespace RESTHTTPWebservice
             string verb = header[0];
             string path = header[1];
             string httpVersion = header[2];
-
+            string[] splitted;
             Dictionary<string, string> headerLines = new Dictionary<string, string>();
             string payload = null;
-            string[] splitted;
-
-            //weitere headerLines einlesen
-            for (int i = 0; i < 4; i++)
-            {
-                request = sr.ReadLine();
-                splitted = request.Split(": ");
-                headerLines.Add(splitted[0], splitted[1]);
-            }
-            #region Failures
-            //Fehlversuch #1
-            //while ((request = sr.ReadLine()) != "\r\n\r\n")
-            //{
-            //    splitted = request.Split(": ");
-            //    headerLines.Add(splitted[0], splitted[1]);
-            //}
-
-            //Fehlversuch #2
-            //while(sr.Peek() != -1)
-            //{
-            //    msg += (char)sr.Read();
-            //}
-            #endregion
-
-            //leerzeile einlesen vor dem payload
-            request = sr.ReadLine();
-
-            //payload einlesen
+            //weitere header einlesen
+            string headerLinesAndPayload = "";
+            
             while (sr.Peek() != -1)
             {
-                payload += (char)sr.Read();
+                headerLinesAndPayload += (char)sr.Read();
             }
-            //Problem solver 101
+            splitted = headerLinesAndPayload.Split("\r\n");
+            payload = splitted[splitted.Length - 1];
+            string[] headerliness;
+            for (int i = 0; i < splitted.Length-2; i++)
+            {
+                headerliness = splitted[i].Split(": ");
+                headerLines.Add(headerliness[0], headerliness[1]);
+            }
+
             if (payload == null)
             {
                 payload = "";
@@ -139,9 +139,7 @@ namespace RESTHTTPWebservice
         }
         private void doHTTPMethod(RequestContext req, StreamWriter sw)
         {
-            string[] splittedPath = req.Path.Split("/");
-            
-
+            string[] splittedPath = req.Path.Split("/");           
             if (req.Verb.Equals("GET"))
             {
                 //request is faulty/empty
@@ -155,14 +153,22 @@ namespace RESTHTTPWebservice
                 {
                     if (splittedPath[2] != null)
                     {
+                        
+                        string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                        token = arr[1];
+                        cmd = new NpgsqlCommand("select username from users where token=@Token", con);           
+                        cmd.Parameters.AddWithValue("Token", token);
+                        string username = cmd.ExecuteScalar().ToString();
+
                         foreach (User item in users)
                         {
-                            if(item.Username == splittedPath[2])
+                            if(item.Username == username)
                             {
                                 logger.LogToConsole("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " +item.Image  );
                                 sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                             }
                         }
+
                     }                 
                 }
                 if (splittedPath[1].Equals("cards"))
@@ -202,6 +208,8 @@ namespace RESTHTTPWebservice
                 {
                     bool closeSW = false;
                     User acc = JsonSerializer.Deserialize<User>(req.Payload);
+                    acc.Token = acc.Username + "-mtcgToken";
+                    cmd = new NpgsqlCommand();
                     foreach (User item in users)
                     {
                         if(item.Username == acc.Username)
@@ -213,6 +221,14 @@ namespace RESTHTTPWebservice
                     }
                     if (closeSW == false)
                     {
+                        cmd = new NpgsqlCommand("insert into users(username,password,name,bio,image,token) " +
+                            "values(@Username,@Password,null,null,null,@Token)", con);
+                        cmd.Parameters.AddWithValue("Username", acc.Username);
+                        cmd.Parameters.AddWithValue("Password", acc.Password);
+                        cmd.Parameters.AddWithValue("Token", acc.Username + "-mtcgToken");
+                        cmd.ExecuteNonQuery();      
+                        
+                        
                         users.Add(acc);
                         logger.LogToConsole("User " + acc.Username + " succesfully created!");
                         sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
@@ -243,6 +259,7 @@ namespace RESTHTTPWebservice
                 //admin creates package
                 if (splittedPath[1].Equals("package"))
                 {
+                    //token = headerlines 
                     if (token == "admin-mtcgToken")
                     {
                        
@@ -285,18 +302,41 @@ namespace RESTHTTPWebservice
                 if (splittedPath[1].Equals("users"))
                 {
                     if (splittedPath[2] != null)
-                    {                   
+                    {
+                        string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                        token = arr[1];
+                        cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                        cmd.Parameters.AddWithValue("Token", token);
+                        string username = cmd.ExecuteScalar().ToString();
+                        bool closeSW = false;
+
                         User acc = JsonSerializer.Deserialize<User>(req.Payload);
                         foreach (User item in users)
                         {
-                            if (item.Username == acc.Username)
+                            if (acc.Username == username)
                             {
                                 item.Name = acc.Name;
                                 item.Bio = acc.Bio;
                                 item.Image = acc.Image;
+
+                                cmd = new NpgsqlCommand("update users set Name = @Name, Bio = @Bio, Image = @Image where username = @UserName", con);
+                                cmd.Parameters.AddWithValue("Name", item.Name);
+                                cmd.Parameters.AddWithValue("Bio", item.Bio);
+                                cmd.Parameters.AddWithValue("Image", item.Image);
+                                cmd.Parameters.AddWithValue("Username", item.Username);
+                                cmd.ExecuteNonQuery();
+
+
                                 logger.LogToConsole("User data succesfully changed");
                                 sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                closeSW = true;
                             }
+                          
+                        }
+                        if(closeSW == false)
+                        {
+                            logger.LogToConsole("Not authorized to change profile!");
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                         }
                     }                                                   
                 }

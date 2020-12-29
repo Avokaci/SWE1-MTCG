@@ -6,3 +6,4 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradin
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MTCG.Communication.AssemblyInfo.cs
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MTCG.Communication.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MTCG.Communication.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Communication\obj\Debug\netstandard2.0\MTCG.Communication.csproj.CoreCompileInputs.cache

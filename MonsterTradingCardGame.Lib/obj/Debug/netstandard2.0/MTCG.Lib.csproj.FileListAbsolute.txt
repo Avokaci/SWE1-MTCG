@@ -6,3 +6,4 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradin
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Lib\obj\Debug\netstandard2.0\MTCG.Lib.AssemblyInfo.cs
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Lib\obj\Debug\netstandard2.0\MTCG.Lib.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Lib\obj\Debug\netstandard2.0\MTCG.Lib.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Lib\obj\Debug\netstandard2.0\MTCG.Lib.csproj.CoreCompileInputs.cache

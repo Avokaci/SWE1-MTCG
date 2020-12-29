@@ -9,3 +9,4 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradin
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MTCG.Lib.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\bin\Debug\netstandard2.0\MTCG.Lib.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.csproj.CopyComplete
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Core\obj\Debug\netstandard2.0\MTCG.Core.csproj.CoreCompileInputs.cache

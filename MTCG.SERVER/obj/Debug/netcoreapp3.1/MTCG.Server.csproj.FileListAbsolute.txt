@@ -18,3 +18,5 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\b
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Core.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Lib.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\MTCG.Lib.pdb
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MTCG.SERVER\obj\Debug\netcoreapp3.1\MTCG.Server.csproj.CoreCompileInputs.cache

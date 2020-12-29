@@ -13,6 +13,7 @@ namespace MonsterTradingCardGame.Core
         string _name;
         string _bio;
         string _image;
+        string _token;
 
         int _coins;
         List<Card> _stack;
@@ -32,5 +33,6 @@ namespace MonsterTradingCardGame.Core
         public List<Card> Stack { get => _stack; set => _stack = value; }
         public List<Card> Deck { get => _deck; set => _deck = value; }
         public int Coins { get => _coins; set => _coins = value; }
+        public string Token { get => _token; set => _token = value; }
     }
 }
