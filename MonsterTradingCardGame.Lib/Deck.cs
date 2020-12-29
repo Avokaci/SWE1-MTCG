@@ -4,14 +4,14 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    public class Stack
+    public class Deck
     {
         List<Card> deck;
-        public Stack()
+        public Deck()
         {
             deck = new List<Card>();
         }
 
-        public List<Card> Deck { get => deck; set => deck = value; }
+        public List<Card> deckk { get => deck; set => deck = value; }
     }
 }

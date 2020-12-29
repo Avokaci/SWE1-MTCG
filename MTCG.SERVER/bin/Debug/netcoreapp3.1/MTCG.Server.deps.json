@@ -30,8 +30,16 @@
         }
       },
       "MTCG.Core/1.0.0": {
+        "dependencies": {
+          "MTCG.Lib": "1.0.0"
+        },
         "runtime": {
           "MTCG.Core.dll": {}
+        }
+      },
+      "MTCG.Lib/1.0.0": {
+        "runtime": {
+          "MTCG.Lib.dll": {}
         }
       }
     }
@@ -55,6 +63,11 @@
       "sha512": ""
     },
     "MTCG.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MTCG.Lib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

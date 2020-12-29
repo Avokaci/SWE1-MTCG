@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MonsterTradingCardGame.Lib
 {
-    class Hand
+    public class Hand
     {
     }
 }
