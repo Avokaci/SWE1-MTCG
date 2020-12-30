@@ -14,7 +14,7 @@ using MonsterTradingCardGame.Core;
 using System.Text.Json;
 using MonsterTradingCardGame.Lib;
 using Npgsql;
-
+using MTCG.Lib;
 
 namespace RESTHTTPWebservice
 {
@@ -31,7 +31,9 @@ namespace RESTHTTPWebservice
         //StreamReader r = File.OpenText("log.txt");
         //game 
         List<User> users = new List<User>();
-        List<Card> package;       
+        List<package> packages = new List<package>();
+        List<Card> cardpackage;
+
         string token = "";
 
         //class variables
@@ -58,6 +60,7 @@ namespace RESTHTTPWebservice
                                 Bio VARCHAR(255), Image VARCHAR(255),
                                 Token VARCHAR(255))";
             cmd.ExecuteNonQuery();
+           
 
             server = new TcpListener(IPAddress.Any, port);          
         }
@@ -162,7 +165,7 @@ namespace RESTHTTPWebservice
 
                         foreach (User item in users)
                         {
-                            if(item.Username == username)
+                            if(item.Username == username && item.Token == token) //validation not 100% correct
                             {
                                 logger.LogToConsole("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " +item.Image  );
                                 sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
@@ -173,6 +176,35 @@ namespace RESTHTTPWebservice
                 }
                 if (splittedPath[1].Equals("cards"))
                 {
+                    bool closeSW = false;
+                    if (req.HeaderLines.ContainsKey("Authorization"))
+                    {
+                        string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                        token = arr[1];
+                        cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                        cmd.Parameters.AddWithValue("Token", token);
+                        string username = cmd.ExecuteScalar().ToString();
+
+                        foreach (User item in users)
+                        {
+                            if (item.Username == username && item.Token == token) //validation not 100% correct
+                            {
+                                logger.LogToConsole("User " + item.Username + " has the following cards: \r\n");
+                                foreach (Card cardd in item.Stack)
+                                {
+                                    logger.LogToConsole("Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n");
+                                }
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                closeSW = true;
+                            }                          
+                        }                     
+                    }
+                    else
+                    {
+                        logger.LogToConsole("Invalid Token!");
+                        sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+
+                    }
 
                 }
                 if (splittedPath[1].Equals("deck"))
@@ -212,7 +244,7 @@ namespace RESTHTTPWebservice
                     cmd = new NpgsqlCommand();
                     foreach (User item in users)
                     {
-                        if(item.Username == acc.Username)
+                        if(item.Username == acc.Username )
                         {
                             logger.LogToConsole("User " + item.Username + " already exists. Choose another username!");
                             sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
@@ -239,6 +271,7 @@ namespace RESTHTTPWebservice
                 {
                     bool closeSW = false;
                     User acc = JsonSerializer.Deserialize<User>(req.Payload);
+                    
                     foreach (User item in users)
                     {
                         if (item.Username == acc.Username && item.Password == acc.Password)
@@ -257,13 +290,19 @@ namespace RESTHTTPWebservice
 
                 }
                 //admin creates package
-                if (splittedPath[1].Equals("package"))
+                if (splittedPath[1].Equals("packages"))
                 {
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    string tokenn = arr[1];
+                   
                     //token = headerlines 
-                    if (token == "admin-mtcgToken")
+                    if (tokenn == "admin-mtcgToken")
                     {
                        
-                        package = JsonSerializer.Deserialize<List<Card>>(req.Payload);
+                        List<Card> cardpackage = JsonSerializer.Deserialize<List<Card>>(req.Payload);
+                        package pack = new package(cardpackage[0],cardpackage[1],cardpackage[2], cardpackage[3], cardpackage[4]);                        
+                        //insert packages into db
+                        packages.Add(pack);
                         logger.LogToConsole("package succesfully created!");
                         sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                     }
@@ -274,10 +313,60 @@ namespace RESTHTTPWebservice
                     }
 
                 }
-                if (splittedPath[1].Equals("transactions/package"))
+                //user aquires packages
+                if (splittedPath[1].Equals("transactions")&&splittedPath[2].Equals("packages"))
                 {
+                    bool closeSW = false;
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
 
+                    foreach (User item in users)
+                    {
+                        if (item.Username == username && item.Token == token) //validation not 100% correct
+                        {
+                            if (packages.Count != 0)
+                            {
+                                if (item.Coins >= 5)
+                                {
+                                    Random rand = new Random();
+                                    int rando = rand.Next(0, packages.Count - 1);
+
+                                    item.Stack.Add(packages[rando].Card1);
+                                    item.Stack.Add(packages[rando].Card2);
+                                    item.Stack.Add(packages[rando].Card3);
+                                    item.Stack.Add(packages[rando].Card4);
+                                    item.Stack.Add(packages[rando].Card5);
+
+                                    item.Coins -= 5;
+                                    packages.RemoveAt(rando);
+
+                                    logger.LogToConsole("User " + item.Username + " succesfully aquired Package");
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    closeSW = true;
+                                }
+                                else
+                                {
+                                    logger.LogToConsole("User " + item.Username + " doesn't have enough Coins!");
+                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                   
+
+                                }
+                            }
+                            else
+                            {
+                                logger.LogToConsole("User " + item.Username + " can't aquire packages because there are no packages left!");
+                                sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                              
+
+                            }
+                        }
+                    }
+                
                 }
+
                 if (splittedPath[1].Equals("battles"))
                 {
 
@@ -313,7 +402,7 @@ namespace RESTHTTPWebservice
                         User acc = JsonSerializer.Deserialize<User>(req.Payload);
                         foreach (User item in users)
                         {
-                            if (acc.Username == username)
+                            if (item.Username == username && item.Token == token) //validation not 100% correct
                             {
                                 item.Name = acc.Name;
                                 item.Bio = acc.Bio;
@@ -371,8 +460,8 @@ namespace RESTHTTPWebservice
             sw.Write("\r\n");
             sw.Write(payload);
             sw.Write("\r\n\r\n");
-            sw.Close();
-            sw.Dispose();
+            //sw.Close();
+            //sw.Dispose();
         }
 
 
