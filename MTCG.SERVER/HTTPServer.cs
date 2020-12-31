@@ -56,12 +56,17 @@ namespace RESTHTTPWebservice
             cmd.ExecuteNonQuery();
             cmd.CommandText = @"CREATE TABLE users(Id serial , 
                                 Username VARCHAR(255) unique,
-                                Password VARCHAR(255), Name VARCHAR(255), 
-                                Bio VARCHAR(255), Image VARCHAR(255),
-                                Token VARCHAR(255))";
+                                Password VARCHAR(255), 
+                                Name VARCHAR(255), 
+                                Bio VARCHAR(255), 
+                                Image VARCHAR(255),
+                                Token VARCHAR(255),
+                                Games INT,
+                                Wins INT,
+                                Losses INT,
+                                Elo INT)";
             cmd.ExecuteNonQuery();
            
-
             server = new TcpListener(IPAddress.Any, port);          
         }
         public void start()
@@ -275,23 +280,50 @@ namespace RESTHTTPWebservice
                     cmd.Parameters.AddWithValue("Token", token);
                     string username = cmd.ExecuteScalar().ToString();
                     string[] splittedtoken = token.Split("-");
-
-                    if (splittedPath[2] == username && splittedtoken[0] == splittedPath[2])
+                 
+                    foreach (User item in users)
                     {
-                        foreach (User item in users)
+                        if (item.Username == username && item.Token == token) 
                         {
-                            if (item.Username == username && item.Token == token) 
-                            {
-                                logger.LogToConsole("Stats for user " + item.Username + " : ");
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-                                closeSW = true;
-                            }
+                            logger.LogToConsole("Stats for user " + item.Username + " : \r\n"  + 
+                                "Games played: " + item.PlayedGames + "\r\n"+
+                                "Wins: " + item.Wins + "\r\n" +
+                                "Losses: " + item.Losses + "\r\n" +
+                                "Elo: " + item.Elo + "\r\n");
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            closeSW = true;
                         }
                     }
+                    
                 }
                 if (splittedPath[1].Equals("score"))
                 {
+                    bool closeSW = false;
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
+                    string[] splittedtoken = token.Split("-");
 
+                    users.Sort((x, y) => x.Elo.CompareTo(y.Elo));
+                    foreach (User item in users)
+                    {
+                        if (item.Username == username && item.Token == token)
+                        {
+                            logger.LogToConsole("Scoreboard: \r\n");
+                            foreach (User itemm in users)
+                            {
+                                Console.WriteLine("Elo: " + itemm.Elo + " Username: " + itemm.Username +
+                                      "Games played: " + itemm.PlayedGames +
+                                      "Wins: " + itemm.Wins +
+                                      "Losses: " + itemm.Losses);
+                            }
+                          
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            closeSW = true;
+                        }
+                    }
                 }
                 if (splittedPath[1].Equals("tradings"))
                 {
@@ -327,11 +359,15 @@ namespace RESTHTTPWebservice
                     }
                     if (closeSW == false)
                     {
-                        cmd = new NpgsqlCommand("insert into users(username,password,name,bio,image,token) " +
-                            "values(@Username,@Password,null,null,null,@Token)", con);
+                        cmd = new NpgsqlCommand("insert into users(username,password,name,bio,image,token,games,wins,losses,elo) " +
+                            "values(@Username,@Password,null,null,null,@Token,@Games,@Wins,@Losses,@Elo)", con);
                         cmd.Parameters.AddWithValue("Username", acc.Username);
                         cmd.Parameters.AddWithValue("Password", acc.Password);
                         cmd.Parameters.AddWithValue("Token", acc.Username + "-mtcgToken");
+                        cmd.Parameters.AddWithValue("Games", acc.PlayedGames);
+                        cmd.Parameters.AddWithValue("Wins", acc.Wins);
+                        cmd.Parameters.AddWithValue("Losses", acc.Losses);
+                        cmd.Parameters.AddWithValue("Elo", acc.Elo);
                         cmd.ExecuteNonQuery();      
                         
                         

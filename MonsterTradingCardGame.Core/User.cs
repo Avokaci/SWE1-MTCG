@@ -14,6 +14,10 @@ namespace MonsterTradingCardGame.Core
         string _bio;
         string _image;
         string _token;
+        int _playedGames;
+        int _wins;
+        int _losses;
+        int _elo;
 
         int _coins;
         List<Card> _stack;
@@ -21,6 +25,10 @@ namespace MonsterTradingCardGame.Core
         public User()
         {
             Coins = 20;
+            _playedGames = 0;
+            _wins = 0;
+            _losses = 0;
+            _elo = 100;
             Stack = new List<Card>();
             Deck = new List<Card>();
         }
@@ -34,5 +42,9 @@ namespace MonsterTradingCardGame.Core
         public List<Card> Deck { get => _deck; set => _deck = value; }
         public int Coins { get => _coins; set => _coins = value; }
         public string Token { get => _token; set => _token = value; }
+        public int PlayedGames { get => _playedGames; set => _playedGames = value; }
+        public int Wins { get => _wins; set => _wins = value; }
+        public int Losses { get => _losses; set => _losses = value; }
+        public int Elo { get => _elo; set => _elo = value; }
     }
 }
