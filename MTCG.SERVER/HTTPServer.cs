@@ -156,24 +156,36 @@ namespace RESTHTTPWebservice
                 {
                     if (splittedPath[2] != null)
                     {
-                        
+                        bool closeSW = false;
                         string[] arr = req.HeaderLines["Authorization"].Split(" ");
                         token = arr[1];
                         cmd = new NpgsqlCommand("select username from users where token=@Token", con);           
                         cmd.Parameters.AddWithValue("Token", token);
                         string username = cmd.ExecuteScalar().ToString();
 
-                        foreach (User item in users)
+                        string[] splittedtoken = token.Split("-");
+
+                        if (splittedPath[2] == username && splittedtoken[0] == splittedPath[2])
                         {
-                            if(item.Username == username && item.Token == token) //validation not 100% correct
+                            foreach (User item in users)
                             {
-                                logger.LogToConsole("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " +item.Image  );
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                if (item.Username == username && item.Token == token) //validation not 100% correct
+                                {
+                                    logger.LogToConsole("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " + item.Image);
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    closeSW = true;
+                                }
                             }
+                        }
+                        if (closeSW == false)
+                        {
+                            logger.LogToConsole("Not authorized to show profile!");
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
                         }
 
                     }                 
                 }
+                //show all aquired cards
                 if (splittedPath[1].Equals("cards"))
                 {
                     bool closeSW = false;
@@ -207,13 +219,75 @@ namespace RESTHTTPWebservice
                     }
 
                 }
+                //show deck
                 if (splittedPath[1].Equals("deck"))
+                {            
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
+
+                    foreach (User item in users)
+                    {
+                        if (item.Username == username && item.Token == token) //validation not 100% correct
+                        {
+                            logger.LogToConsole("User " + item.Username + " has the following cards in his deck: \r\n");
+                            foreach (Card cardd in item.Deck)
+                            {
+                                logger.LogToConsole("Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n");
+                            }
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        }
+                    }
+                   
+                }
+                //show deck in different representation
+                if (splittedPath[1].Equals("deck?format=plain"))
                 {
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
+
+                    foreach (User item in users)
+                    {
+                        if (item.Username == username && item.Token == token) //validation not 100% correct
+                        {
+                            logger.LogToConsole("User " + item.Username + " has the following cards in his deck (plain view): \r\n");
+                            foreach (Card cardd in item.Deck)
+                            {
+                                logger.LogToConsole("Card ID: " + cardd.Id + "\r\n");
+                            }
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        }
+                    }
 
                 }
+                //show stats for a user
                 if (splittedPath[1].Equals("stats"))
                 {
+                    bool closeSW = false;
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
+                    string[] splittedtoken = token.Split("-");
 
+                    if (splittedPath[2] == username && splittedtoken[0] == splittedPath[2])
+                    {
+                        foreach (User item in users)
+                        {
+                            if (item.Username == username && item.Token == token) 
+                            {
+                                logger.LogToConsole("Stats for user " + item.Username + " : ");
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                closeSW = true;
+                            }
+                        }
+                    }
                 }
                 if (splittedPath[1].Equals("score"))
                 {
@@ -398,29 +472,34 @@ namespace RESTHTTPWebservice
                         cmd.Parameters.AddWithValue("Token", token);
                         string username = cmd.ExecuteScalar().ToString();
                         bool closeSW = false;
+                        string[] splittedtoken = token.Split("-");
 
                         User acc = JsonSerializer.Deserialize<User>(req.Payload);
-                        foreach (User item in users)
+                        if (splittedPath[2] == username && splittedtoken[0] == splittedPath[2])
                         {
-                            if (item.Username == username && item.Token == token) //validation not 100% correct
+                            foreach (User item in users)
                             {
-                                item.Name = acc.Name;
-                                item.Bio = acc.Bio;
-                                item.Image = acc.Image;
 
-                                cmd = new NpgsqlCommand("update users set Name = @Name, Bio = @Bio, Image = @Image where username = @UserName", con);
-                                cmd.Parameters.AddWithValue("Name", item.Name);
-                                cmd.Parameters.AddWithValue("Bio", item.Bio);
-                                cmd.Parameters.AddWithValue("Image", item.Image);
-                                cmd.Parameters.AddWithValue("Username", item.Username);
-                                cmd.ExecuteNonQuery();
+                                if (item.Username == username && item.Token == token) //validation not 100% correct
+                                {
+                                    item.Name = acc.Name;
+                                    item.Bio = acc.Bio;
+                                    item.Image = acc.Image;
+
+                                    cmd = new NpgsqlCommand("update users set Name = @Name, Bio = @Bio, Image = @Image where username = @UserName", con);
+                                    cmd.Parameters.AddWithValue("Name", item.Name);
+                                    cmd.Parameters.AddWithValue("Bio", item.Bio);
+                                    cmd.Parameters.AddWithValue("Image", item.Image);
+                                    cmd.Parameters.AddWithValue("Username", item.Username);
+                                    cmd.ExecuteNonQuery();
 
 
-                                logger.LogToConsole("User data succesfully changed");
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
-                                closeSW = true;
+                                    logger.LogToConsole("User data succesfully changed");
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    closeSW = true;
+                                }
+
                             }
-                          
                         }
                         if(closeSW == false)
                         {
@@ -431,7 +510,60 @@ namespace RESTHTTPWebservice
                 }
                 if (splittedPath[1].Equals("deck"))
                 {
+                    string[] arr = req.HeaderLines["Authorization"].Split(" ");
+                    token = arr[1];
+                    cmd = new NpgsqlCommand("select username from users where token=@Token", con);
+                    cmd.Parameters.AddWithValue("Token", token);
+                    string username = cmd.ExecuteScalar().ToString();
+                    bool closeSW = false;
 
+                    string[] cardIds = JsonSerializer.Deserialize<string[]>(req.Payload);
+                    foreach (User item in users)
+                    {
+                        if (item.Username == username && item.Token == token) //validation not 100% correct
+                        {                   
+                            foreach (Card cardd in item.Stack)
+                            {
+                                if (cardIds.Length == 4)
+                                {
+                                    if (cardd.Id == cardIds[0] || cardd.Id == cardIds[1] || cardd.Id == cardIds[2] || cardd.Id == cardIds[3])
+                                    {
+                                        if (item.Deck.Count <= 4)
+                                        {
+                                            if (!item.Deck.Contains(cardd))
+                                            {
+                                                item.Deck.Add(cardd);
+                                                logger.LogToConsole("Card ID: " + cardd.Id + " was succesfully added to " + item.Username + "s deck \r\n");
+                                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                                closeSW = true;
+
+                                            }
+                                            else
+                                            {
+                                                logger.LogToConsole("Card ID: " + cardd.Id + " already exists in deck. Can't put same card into deck twice!");
+                                                sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                                
+                                            }
+                                        }
+                                        else
+                                        {
+                                            logger.LogToConsole("Deck can't have more than 4 cards!");
+                                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                           
+                                        }
+                                    }
+                                }
+                                else if(closeSW == false)
+                                {
+                                    logger.LogToConsole("Deck has only " + cardIds.Length + " cards. Deck must have exactly 4 cards!");
+                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    closeSW = true;
+                                }
+
+                            }
+                            
+                        }
+                    }
                 }
                 
 
