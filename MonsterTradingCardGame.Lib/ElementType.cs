@@ -8,6 +8,7 @@ namespace MonsterTradingCardGame.Lib
     {
         fire,
         water,
-        normal
+        normal,
+        earth //optional
     }
 }

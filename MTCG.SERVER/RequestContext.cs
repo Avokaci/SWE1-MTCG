@@ -28,6 +28,7 @@ namespace RESTHTTPWebservice
             this.Payload = payload;
         }
 
+        //for debuging purposes
         public override string ToString()
         {
             string header = Verb + " " + Path + " " + HttpVersion + "\n";

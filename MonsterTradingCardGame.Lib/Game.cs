@@ -140,7 +140,10 @@ namespace MonsterTradingCardGame.Lib
             
             if (ownCard.Element == ElementType.normal && enemyCard.Element == ElementType.water)            
                 return true;
-            
+            //OPTIONAL earth beats water
+            if (ownCard.Element == ElementType.earth && enemyCard.Element == ElementType.water)
+                return true;
+
             return false;
         }
 

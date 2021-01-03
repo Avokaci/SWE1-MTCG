@@ -7,7 +7,7 @@ namespace MTCG.Lib
 {
     public class package
     {
-        
+        int packageId;
         Card _card1;
         Card _card2;
         Card _card3;
@@ -19,7 +19,7 @@ namespace MTCG.Lib
             Card2 = card2;
             Card3 = card3;
             Card4 = card4;
-            Card5 = card5;         
+            Card5 = card5;
         }
 
         public Card Card1 { get => _card1; set => _card1 = value; }
@@ -27,5 +27,6 @@ namespace MTCG.Lib
         public Card Card3 { get => _card3; set => _card3 = value; }
         public Card Card4 { get => _card4; set => _card4 = value; }
         public Card Card5 { get => _card5; set => _card5 = value; }
+        public int PackageId { get => packageId; set => packageId = value; }
     }
 }
