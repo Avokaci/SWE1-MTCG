@@ -78,9 +78,11 @@ namespace RESTHTTPWebservice
             cmd.CommandText = "DROP TABLE IF EXISTS trade_deals";
             cmd.ExecuteNonQuery();
             cmd.CommandText = @"CREATE TABLE trade_deals(Id VARCHAR(255) , 
-                                Card_To_Trade VARCHAR(255),
-                                Type VARCHAR(255), 
-                                Minimum_Damage int, 
+                                Card_To_Trade_ID VARCHAR(255),
+                                Card_To_Trade_Name VARCHAR(255),
+                                Card_To_Trade_Damage int,
+                                Wanted_Card_Type VARCHAR(255), 
+                                Wanted_Card_Minimum_Damage int, 
                                 Requesting_User VARCHAR(255))";
             cmd.ExecuteNonQuery();
 
@@ -198,7 +200,8 @@ namespace RESTHTTPWebservice
                                 if (item.Username == username && item.Token == token) //validation not 100% correct
                                 {
                                     logger.LogToConsole("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " + item.Image);
-                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    string responseMsg = ("Username " + item.Username + " Name: " + item.Name + " Bio: " + item.Bio + " Image: " + item.Image);
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                                     closeSW = true;
                                 }
                             }
@@ -206,7 +209,8 @@ namespace RESTHTTPWebservice
                         if (closeSW == false)
                         {
                             logger.LogToConsole("Not authorized to show profile!");
-                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            string responseMsg = ("Not authorized to show profile!");
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                         }
 
                     }                 
@@ -227,12 +231,15 @@ namespace RESTHTTPWebservice
                         {
                             if (item.Username == username && item.Token == token) //validation not 100% correct
                             {
+                                string responseMsg = "User " + item.Username + " has the following cards: \r\n";
                                 logger.LogToConsole("User " + item.Username + " has the following cards: \r\n");
                                 foreach (Card cardd in item.Stack)
                                 {
+                                    responseMsg += "Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n";
                                     logger.LogToConsole("Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n");
                                 }
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                                 closeSW = true;
                             }                          
                         }                     
@@ -240,7 +247,8 @@ namespace RESTHTTPWebservice
                     else
                     {
                         logger.LogToConsole("Invalid Token!");
-                        sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        string responseMsg = "Invalid Token!";
+                        sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
 
                     }
 
@@ -258,12 +266,14 @@ namespace RESTHTTPWebservice
                     {
                         if (item.Username == username && item.Token == token) //validation not 100% correct
                         {
+                            string responseMsg = "User " + item.Username + " has the following cards in his deck: \r\n";
                             logger.LogToConsole("User " + item.Username + " has the following cards in his deck: \r\n");
                             foreach (Card cardd in item.Deck)
                             {
+                                responseMsg += "Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n";
                                 logger.LogToConsole("Card ID: " + cardd.Id + "\r\nCard Name: " + cardd.Name + "\r\nCard Damage: " + cardd.Damage + "\r\n");
                             }
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                         }
                     }
                    
@@ -281,12 +291,14 @@ namespace RESTHTTPWebservice
                     {
                         if (item.Username == username && item.Token == token) //validation not 100% correct
                         {
+                            string responseMsg = "User " + item.Username + " has the following cards in his deck (plain view): \r\n";
                             logger.LogToConsole("User " + item.Username + " has the following cards in his deck (plain view): \r\n");
                             foreach (Card cardd in item.Deck)
                             {
+                                responseMsg += "Card ID: " + cardd.Id + "\r\n";
                                 logger.LogToConsole("Card ID: " + cardd.Id + "\r\n");
                             }
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                         }
                     }
 
@@ -306,19 +318,27 @@ namespace RESTHTTPWebservice
                     {
                         if (item.Username == username && item.Token == token) 
                         {
+                           
                             double wlRatio;
                             if (item.Losses == 0)
                                 wlRatio = item.Wins;
                             else
                                 wlRatio = item.Wins / item.Losses;
-                            
+
+                            string responseMsg = "Stats for user " + item.Username + " : \r\n" +
+                                "Games played: " + item.PlayedGames + "\r\n" +
+                                "Wins: " + item.Wins + "\r\n" +
+                                "Losses: " + item.Losses + "\r\n" +
+                                "Elo: " + item.Elo + "\r\n" +
+                                "Win/Lose ratio: " + wlRatio;
+
                             logger.LogToConsole("Stats for user " + item.Username + " : \r\n"  + 
                                 "Games played: " + item.PlayedGames + "\r\n"+
                                 "Wins: " + item.Wins + "\r\n" +
                                 "Losses: " + item.Losses + "\r\n" +
                                 "Elo: " + item.Elo + "\r\n" +
                                 "Win/Lose ratio: " + wlRatio); //OPTIONAL win lose ratio
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                             closeSW = true;
                         }
                     }
@@ -339,16 +359,23 @@ namespace RESTHTTPWebservice
                     {
                         if (item.Username == username && item.Token == token)
                         {
+                            string response = "Scoreboard: \r\n";
                             logger.LogToConsole("Scoreboard: \r\n");
                             foreach (User itemm in users)
                             {
+                                response += "Elo: " + itemm.Elo + " Username: " + itemm.Username +
+                                      "Games played: " + itemm.PlayedGames +
+                                      "Wins: " + itemm.Wins +
+                                      "Losses: " + itemm.Losses + "\r\n";
+
                                 Console.WriteLine("Elo: " + itemm.Elo + " Username: " + itemm.Username +
                                       "Games played: " + itemm.PlayedGames +
                                       "Wins: " + itemm.Wins +
                                       "Losses: " + itemm.Losses);
+                                
                             }
                           
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"],response);
                             closeSW = true;
                         }
                     }
@@ -376,36 +403,59 @@ namespace RESTHTTPWebservice
                     {
                         if (item.Username == username && item.Token == token)
                         {
+                            string response;
                             bool isEmpty;
-                            isEmpty = checkTableEmpty("trade_deals");
+                            isEmpty = checkIfColumnExists("trade_deals",username);
                             if (isEmpty)
                             {
+                                response = "User " + username + " currently has no open trade deals!";
                                 logger.LogToConsole("User " + username + " currently has no open trade deals!");
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"],response);
+                            }
+                            else if(!isEmpty)
+                            {                             
+                                cmd = new NpgsqlCommand("select id from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                string tradeId = cmd.ExecuteScalar().ToString();
+                                cmd = new NpgsqlCommand("select card_to_trade_id from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                string cardToTradeId = cmd.ExecuteScalar().ToString();
+                                cmd = new NpgsqlCommand("select card_to_trade_name from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                string cardToTradeName = cmd.ExecuteScalar().ToString();
+                                cmd = new NpgsqlCommand("select card_to_trade_damage from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                int cardToTradeDamage = Convert.ToInt32( cmd.ExecuteScalar());
+                                cmd = new NpgsqlCommand("select wanted_card_type from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                string wantedCartType = cmd.ExecuteScalar().ToString();
+                                cmd = new NpgsqlCommand("select wanted_card_minimum_damage from trade_deals where requesting_user=@RequestingUser", con);
+                                cmd.Parameters.AddWithValue("RequestingUser", username);
+                                int wantedCartMinDamage =Convert.ToInt32( cmd.ExecuteScalar());
+
+                                logger.LogToConsole("User " + username + " has the following deal open: \r\n"
+                                    + "Trade Id: " + tradeId + "\r\n"
+                                    + "Card to trade ID: " + cardToTradeId + "\r\n"
+                                    + "Card to trade Name: " + cardToTradeName + "\r\n"
+                                    + "Card to trade Damage: " + cardToTradeDamage + "\r\n"
+                                    + "Wanted Card Type: " + wantedCartType + "\r\n"
+                                    + "Wanted Card Minimum Damage: " + wantedCartMinDamage + "\r\n");
+
+                                response = "User " + username + " has the following deal open: \r\n"
+                                    + "Trade Id: " + tradeId + "\r\n"
+                                    + "Card to trade ID: " + cardToTradeId + "\r\n"
+                                    + "Card to trade Name: " + cardToTradeName + "\r\n"
+                                    + "Card to trade Damage: " + cardToTradeDamage + "\r\n"
+                                    + "Wanted Card Type: " + wantedCartType + "\r\n"
+                                    + "Wanted Card Minimum Damage: " + wantedCartMinDamage + "\r\n";
+
+                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                             }
                             else
                             {
-                              
-                                cmd = new NpgsqlCommand("select id from trade_deals where requesting_user=@RequestingUser", con);
-                                cmd.Parameters.AddWithValue("RequestingUser", username);
-                                string id = cmd.ExecuteScalar().ToString();
-                                cmd = new NpgsqlCommand("select card_to_trade from trade_deals where requesting_user=@RequestingUser", con);
-                                cmd.Parameters.AddWithValue("RequestingUser", username);
-                                string cardToTrade = cmd.ExecuteScalar().ToString();
-                                cmd = new NpgsqlCommand("select Type from trade_deals where requesting_user=@RequestingUser", con);
-                                cmd.Parameters.AddWithValue("RequestingUser", username);
-                                string type = cmd.ExecuteScalar().ToString();
-                                cmd = new NpgsqlCommand("select minimum_damage from trade_deals where requesting_user=@RequestingUser", con);
-                                cmd.Parameters.AddWithValue("RequestingUser", username);
-                                int minimumDamage = (int)cmd.ExecuteScalar();
-                                cmd.ExecuteNonQuery();
-
-                                logger.LogToConsole("User " + username + " has the following deal open: \r\n"
-                                    + "ID: " + id + "\r\n"
-                                    + "Card to trade: " + cardToTrade + "\r\n"
-                                    + "Type: " + type + "\r\n"
-                                    + "Minimum damage: " + minimumDamage + "\r\n");
-                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                response = "User " + username + " currently has no open trade deals!";
+                                logger.LogToConsole("User " + username + " currently has no open trade deals!");
+                                sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], response);
                             }
                         }
 
@@ -427,12 +477,14 @@ namespace RESTHTTPWebservice
                     User acc = JsonSerializer.Deserialize<User>(req.Payload);
                     acc.Token = acc.Username + "-mtcgToken";
                     cmd = new NpgsqlCommand();
+                   
                     foreach (User item in users)
                     {
                         if(item.Username == acc.Username )
                         {
                             logger.LogToConsole("User " + item.Username + " already exists. Choose another username!");
-                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            string responseMsg = "User " + item.Username + " already exists. Choose another username!";
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                             closeSW = true;
                         }                     
                     }
@@ -452,29 +504,33 @@ namespace RESTHTTPWebservice
                         
                         users.Add(acc);
                         logger.LogToConsole("User " + acc.Username + " succesfully created!");
-                        sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        string responseMsg = "User " + acc.Username + " succesfully created!";
+                        sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                     }
                 }
                 //user login
                 if (splittedPath[1].Equals("sessions"))
                 {
                     bool closeSW = false;
+                    string response;
                     User acc = JsonSerializer.Deserialize<User>(req.Payload);
                     
                     foreach (User item in users)
                     {
                         if (item.Username == acc.Username && item.Password == acc.Password)
                         {
+                            response = "User " + acc.Username + " succesfully logged in!";
                             logger.LogToConsole("User " + acc.Username + " succesfully logged in!");
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                             closeSW = true;
                             token = acc.Username + "-mtcgToken";
                         }                      
                     }
                     if (closeSW == false)
                     {
+                        response = "User does not exist or credentials are wrong!";
                         logger.LogToConsole("User does not exist or credentials are wrong!");
-                        sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], response);
                     }
 
                 }
@@ -483,11 +539,11 @@ namespace RESTHTTPWebservice
                 {
                     string[] arr = req.HeaderLines["Authorization"].Split(" ");
                     string tokenn = arr[1];
-                   
+                    string response;
                     //token = headerlines 
                     if (tokenn == "admin-mtcgToken")
                     {
-                       
+                        
                         List<Card> cardpackage = JsonSerializer.Deserialize<List<Card>>(req.Payload);
                         package pack = new package(cardpackage[0],cardpackage[1],cardpackage[2], cardpackage[3], cardpackage[4]);
                         packid++;
@@ -505,13 +561,15 @@ namespace RESTHTTPWebservice
                         cmd.ExecuteNonQuery();
 
                         packages.Add(pack);
+                        response = "package " + packid + " succesfully created!";
                         logger.LogToConsole("package " + packid + " succesfully created!");
-                        sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                     }
                     else
                     {
+                        response = "Not authorized to create package!";
                         logger.LogToConsole("Not authorized to create package!");
-                        sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], response);
                     }
 
                 }
@@ -519,6 +577,7 @@ namespace RESTHTTPWebservice
                 if (splittedPath[1].Equals("transactions")&&splittedPath[2].Equals("packages"))
                 {
                     bool closeSW = false;
+                    string response;
                     string[] arr = req.HeaderLines["Authorization"].Split(" ");
                     token = arr[1];
                     cmd = new NpgsqlCommand("select username from users where token=@Token", con);
@@ -561,25 +620,27 @@ namespace RESTHTTPWebservice
                                     cmd.ExecuteNonQuery();
 
                                     packages.RemoveAt(rando);
-                                  
 
 
+                                    response = "User " + item.Username + " succesfully aquired Package";
                                     logger.LogToConsole("User " + item.Username + " succesfully aquired Package");
-                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                                     closeSW = true;
                                 }
                                 else
                                 {
+                                    response = "User " + item.Username + " doesn't have enough Coins!";
                                     logger.LogToConsole("User " + item.Username + " doesn't have enough Coins!");
-                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], response);
                                    
 
                                 }
                             }
                             else
                             {
+                                response = "User " + item.Username + " can't aquire packages because there are no packages left!";
                                 logger.LogToConsole("User " + item.Username + " can't aquire packages because there are no packages left!");
-                                sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                sendResponse(sw, "404 NOT FOUND", req.HttpVersion, req.HeaderLines["Host"], response);
                               
 
                             }
@@ -591,6 +652,7 @@ namespace RESTHTTPWebservice
                 if (splittedPath[1].Equals("battles"))
                 {
                     bool closeSW = false;
+                    string response ="";
                     string[] arr = req.HeaderLines["Authorization"].Split(" ");
                     token = arr[1];
                     cmd = new NpgsqlCommand("select username from users where token=@Token", con);
@@ -600,12 +662,15 @@ namespace RESTHTTPWebservice
                     //Placeholder approach but couldnt solve it in the end...
                     if (playercount == 2)
                     {
+                        
                         foreach (User player1 in users)
                         {
                             foreach (User player2 in users)
                             {
+
                                 if ((player1.Username == username && player1.Token == token) && (player2.Username == username && player2.Token == token))
                                 {
+                                    
                                     Game game = new Game();
                                     int roundCounter = 0;
                                     while (player1.Deck.Count != 0 || player2.Deck.Count != 0|| roundCounter < 100)
@@ -654,9 +719,12 @@ namespace RESTHTTPWebservice
                                         {
                                             player1CurrentCard.Element = ElementType.earth;
                                         }
-
+                                       
                                         //fight and return winner card
                                         Card winnercard = game.battle(player1CurrentCard, player2CurrentCard);
+                                        response = "Player 1 card: " + player1CurrentCard.Name + " " + player1CurrentCard.Damage + " " + player1CurrentCard.Element
+                                                + " vs " +
+                                                "Player 2 card: " + player2CurrentCard.Name + " " + player2CurrentCard.Damage + " " + player2CurrentCard.Element+"\r\n";
 
                                         logger.LogToConsole(
                                                 "Player 1 card: " + player1CurrentCard.Name + " " + player1CurrentCard.Damage + " " + player1CurrentCard.Element
@@ -669,6 +737,7 @@ namespace RESTHTTPWebservice
                                         {
                                             player1.Deck.Add(player2CurrentCard);
                                             player2.Deck.Remove(player2CurrentCard);
+                                            response += "Player 1 won " + roundCounter + ". round and got enemies card\r\n";
                                             logger.LogToConsole("Player 1 won " + roundCounter + ". round and got enemies card");
 
                                         }
@@ -677,9 +746,11 @@ namespace RESTHTTPWebservice
                                         {
                                             player2.Deck.Add(player1CurrentCard);
                                             player1.Deck.Remove(player1CurrentCard);
+                                            response += "Player 2 won " + roundCounter + ". round and got enemies card\r\n";
                                             logger.LogToConsole("Player 2 won " + roundCounter + ". round and got enemies card");
                                         }
                                         //deck card count of both players
+                                        response += "Player 1 has: " + player1.Deck.Count + " cards left\r\n + Player 2 has: " + player2.Deck.Count + " cards left";
                                         logger.LogToConsole("Player 1 has: " + player1.Deck.Count +" cards left");
                                         logger.LogToConsole("Player 2 has: " + player2.Deck.Count + " cards left");
 
@@ -687,20 +758,23 @@ namespace RESTHTTPWebservice
                                     //player 1 game loose
                                     if(player1.Deck.Count == 0)
                                     {
+                                        response += "Player 1 has lost the battle";
                                         logger.LogToConsole("Player 1 has lost the battle");
                                         player1.Elo -= 5;
                                         player2.Elo += 3;
                                     }
                                     //player 2 game loose
-                                    if (player2.Deck.Count == 0)
+                                    else 
                                     {
+                                        response += "Player 2 has lost the battle";
                                         logger.LogToConsole("Player 2 has lost the battle");
                                         player2.Elo -= 5;
                                         player1.Elo += 3;
                                     }
-                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
 
                                 }
+                               
 
                             }
                         }
@@ -708,14 +782,15 @@ namespace RESTHTTPWebservice
                     else
                     {
                         logger.LogToConsole("Insufficient Players to battle!");
-                        sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                        response = "Insufficient Players to battle!";
+                        sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], response);
                     }
 
                 }
-
-                //WIP: initiate trading process
+                //create deal
                 if (splittedPath[1].Equals("tradings"))
                 {
+                    string response = "";
                     bool closeSW = false;
                     string[] arr = req.HeaderLines["Authorization"].Split(" ");
                     token = arr[1];
@@ -724,19 +799,34 @@ namespace RESTHTTPWebservice
                     string username = cmd.ExecuteScalar().ToString();
 
                     TradeDeal deal = JsonSerializer.Deserialize<TradeDeal>(req.Payload);
+                    
 
                     foreach (User item in users)
                     {
                         if (item.Username == username && item.Token == token)
                         {
-                            cmd = new NpgsqlCommand("insert into trade_deals(id,card_to_trade,type,minimum_damage, requesting_user) " +
-                                "values(@Id,@CardToTrade,@Type,@MinimumDamage,@RequestingUser)", con);
-                            cmd.Parameters.AddWithValue("Id", deal.Id);
-                            cmd.Parameters.AddWithValue("CardToTrade", deal.CardToTrade);
-                            cmd.Parameters.AddWithValue("Type", deal.Type);
-                            cmd.Parameters.AddWithValue("MinimumDamage", deal.MinimumDamage);
-                            cmd.Parameters.AddWithValue("RequestingUser", username);
+                            //get the trading card from user stack 
+                            Card tradingCard = new Card();
+                            foreach (Card card in item.Stack)
+                            {
+                                if(card.Id == deal.CardToTrade)
+                                {
+                                    tradingCard = card;
+                                }
+                            }
 
+
+                            cmd = new NpgsqlCommand("insert into trade_deals(id,card_to_trade_id,card_to_trade_name, card_to_trade_damage," +
+                                "wanted_card_type,wanted_card_minimum_damage, requesting_user) " +
+                                "values(@Id,@card_to_trade_id, @card_to_trade_name, @card_to_trade_damage, @wanted_card_type," +
+                                "@wanted_card_minimum_damage,@RequestingUser)", con);
+                            cmd.Parameters.AddWithValue("Id", deal.Id);
+                            cmd.Parameters.AddWithValue("card_to_trade_id", tradingCard.Id);
+                            cmd.Parameters.AddWithValue("card_to_trade_name", tradingCard.Name);
+                            cmd.Parameters.AddWithValue("card_to_trade_damage", tradingCard.Damage);
+                            cmd.Parameters.AddWithValue("wanted_card_type", deal.Type);
+                            cmd.Parameters.AddWithValue("wanted_card_minimum_damage", deal.MinimumDamage);
+                            cmd.Parameters.AddWithValue("RequestingUser", username);
                             cmd.ExecuteNonQuery();
 
                             tradeDeals.Add(deal);
@@ -747,9 +837,10 @@ namespace RESTHTTPWebservice
                                     item.Stack.Remove(item.Stack[i]);
                                 }
                             }
-                           
+
+                            response = "Trading deal " + deal.Id + " succesfully created";
                             logger.LogToConsole("Trading deal " + deal.Id+ " succesfully created");
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                         }
                         
                     }
@@ -768,6 +859,7 @@ namespace RESTHTTPWebservice
                 {
                     if (splittedPath[2] != null)
                     {
+                      
                         string[] arr = req.HeaderLines["Authorization"].Split(" ");
                         token = arr[1];
                         cmd = new NpgsqlCommand("select username from users where token=@Token", con);
@@ -797,7 +889,8 @@ namespace RESTHTTPWebservice
 
 
                                     logger.LogToConsole("User data succesfully changed");
-                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    string responseMsg = "User data succesfully changed";
+                                    sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                                     closeSW = true;
                                 }
 
@@ -806,7 +899,8 @@ namespace RESTHTTPWebservice
                         if(closeSW == false)
                         {
                             logger.LogToConsole("Not authorized to change profile!");
-                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            string responseMsg = "Not authorized to change profile!";
+                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
                         }
                     }                                                   
                 }
@@ -819,11 +913,12 @@ namespace RESTHTTPWebservice
                     cmd.Parameters.AddWithValue("Token", token);
                     string username = cmd.ExecuteScalar().ToString();
                     bool closeSW = false;
+                    string response = "";
 
                     string[] cardIds = JsonSerializer.Deserialize<string[]>(req.Payload);
                     foreach (User item in users)
                     {
-                        if (item.Username == username && item.Token == token) //validation not 100% correct
+                        if (item.Username == username && item.Token == token) 
                         {                   
                             foreach (Card cardd in item.Stack)
                             {
@@ -837,30 +932,34 @@ namespace RESTHTTPWebservice
                                             {
                                                 //db
                                                 item.Deck.Add(cardd);
+                                                response = "Card ID: " + cardd.Id + " was succesfully added to " + item.Username + "s deck \r\n";
                                                 logger.LogToConsole("Card ID: " + cardd.Id + " was succesfully added to " + item.Username + "s deck \r\n");
-                                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                                sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                                                 closeSW = true;
 
                                             }
                                             else
                                             {
+                                                response = "Card ID: " + cardd.Id + " already exists in deck. Can't put same card into deck twice!";
                                                 logger.LogToConsole("Card ID: " + cardd.Id + " already exists in deck. Can't put same card into deck twice!");
-                                                sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                                sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], response);
                                                 
                                             }
                                         }
                                         else
                                         {
+                                            response = "Deck can't have more than 4 cards!";
                                             logger.LogToConsole("Deck can't have more than 4 cards!");
-                                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                            sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], response);
                                            
                                         }
                                     }
                                 }
                                 else if(closeSW == false)
                                 {
+                                    response = "Deck has only " + cardIds.Length + " cards. Deck must have exactly 4 cards!";
                                     logger.LogToConsole("Deck has only " + cardIds.Length + " cards. Deck must have exactly 4 cards!");
-                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                                    sendResponse(sw, "405 METHOD NOT ALLOWED", req.HttpVersion, req.HeaderLines["Host"],response);
                                     closeSW = true;
                                 }
 
@@ -884,6 +983,7 @@ namespace RESTHTTPWebservice
                 }
                 if (splittedPath[1].Equals("tradings"))
                 {
+                    string response = "";
                     bool closeSW = false;
                     string[] arr = req.HeaderLines["Authorization"].Split(" ");
                     token = arr[1];
@@ -891,28 +991,34 @@ namespace RESTHTTPWebservice
                     cmd.Parameters.AddWithValue("Token", token);
                     string username = cmd.ExecuteScalar().ToString();
 
-                    
-
                     foreach (User item in users)
                     {
                         if (item.Username == username && item.Token == token)
                         {
-                            //user gets his card back
-                            //cmd = new NpgsqlCommand("select cart_to_trade from trade_deals where id=" + splittedPath[2], con);
-                            //string cardId = cmd.ExecuteScalar().ToString();
-                            //foreach (TradeDeal trade in tradeDeals)
-                            //{
-                            //    if(trade.Id == splittedPath[2])
-                            //    {
-                            //        item.Stack.Add(trade.CardToTrade);
-                            //    }
-                            //}
+                            //retrieve card to get back from db
+                            cmd = new NpgsqlCommand("select card_to_trade_id from trade_deals where id='" + splittedPath[2]+"'", con);
+                            string cardId = cmd.ExecuteScalar().ToString();
+                            cmd = new NpgsqlCommand("select card_to_trade_name from trade_deals where id='" + splittedPath[2] + "'", con);
+                            string cardName = cmd.ExecuteScalar().ToString();
+                            cmd = new NpgsqlCommand("select card_to_trade_damage from trade_deals where id='" + splittedPath[2] + "'", con);
+                            int cardDamage = Convert.ToInt32( cmd.ExecuteScalar());
 
-                            cmd = new NpgsqlCommand("delete from trade_deals where id="+splittedPath[2], con);                          
+                            //create card to get back
+                            Card getBackCard = new Card();
+                            getBackCard.Id = cardId;
+                            getBackCard.Name = cardName;
+                            getBackCard.Damage = cardDamage;
+
+                            //add card to users stack again
+                            item.Stack.Add(getBackCard);
+
+                            //delete trade deal
+                            cmd = new NpgsqlCommand("delete from trade_deals where id='" + splittedPath[2] + "'", con);                          
                             cmd.ExecuteNonQuery();
 
+                            response = "Trading deal " + splittedPath[2] + " succesfully deleted";
                             logger.LogToConsole("Trading deal " + splittedPath[2] + " succesfully deleted");
-                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], req.Payload);
+                            sendResponse(sw, "201 Created", req.HttpVersion, req.HeaderLines["Host"], response);
                         }
                     }
                 }
@@ -928,8 +1034,8 @@ namespace RESTHTTPWebservice
             sw.Write("\r\n");
             sw.Write(payload);
             sw.Write("\r\n\r\n");
-            //sw.Close();
-            //sw.Dispose();
+            sw.Close();
+            sw.Dispose();
         }
 
         private bool checkTableEmpty(string tablename)
@@ -940,15 +1046,24 @@ namespace RESTHTTPWebservice
                 return false;
             return true;
         }
-        private bool checkTableEmptyForUser(string tablename, string username)
+        private bool checkIfColumnExists(string tablename, string username)
         {
             bool checkTableEmptyy = checkTableEmpty(tablename);
             if (!checkTableEmptyy)
             {
-                cmd = new NpgsqlCommand("select count(*) from " + tablename + " where requesting_user = " + username, con);
-                int counter = Convert.ToInt32(cmd.ExecuteScalar());
-                if (counter > 0)
+                cmd = new NpgsqlCommand("select count(1) from " + tablename + " where requesting_user = " + username, con);
+                int counter;
+                try
+                {
+                    counter = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (counter > 0)
+                        return false;
+                }
+                catch (Exception)
+                {
                     return false;
+                }
+               
             }
             return true;
         }
