@@ -97,3 +97,5 @@ C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradin
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MTCG.Testing.dll
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MTCG.Testing.pdb
 C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MTCG.Testing.genruntimeconfig.cache
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Testing\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\burak_y46me01\OneDrive\Desktop\Neuer Ordner (2)\SWE1-MTCG\MonsterTradingCardGame.Testing\obj\Debug\netcoreapp3.1\MTCG.Testing.csproj.CoreCompileInputs.cache

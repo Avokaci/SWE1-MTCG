@@ -10,7 +10,7 @@ using MonsterTradingCardGame.Lib.Spells;
 
 namespace MonsterTradingCardGame.Testing
 {
-    public class BattleTest
+    public class GameTest
     {
 
       
@@ -123,7 +123,7 @@ namespace MonsterTradingCardGame.Testing
             card = game.battle(mockedA.Object, mockedB.Object);
 
             //assert
-            Assert.AreEqual(card, mockedB.Object);
+            Assert.AreEqual(card, mockedA.Object);
         }
         [Test]
         public void TestMove_NormalRuleSpellVSSpell()
