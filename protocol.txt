@@ -1,35 +1,52 @@
 Design/lessons learned
--Das Projekt ist in 5 Projekte unterteilt, die sich in einer gemeinsamen Projektmappe befinden.
- In der MTCG.Communication befindet sich eine Klasse namens LogWriter, welche Methoden zum Loggen auf die Konsole, 
- in eine Datei und aus einer Datei bietet.
+-	Das Projekt ist in 5 Projekte unterteilt, die sich in einer gemeinsamen Projektmappe befinden.
+ 	In der MTCG.Communication befindet sich eine Klasse namens LogWriter, welche Methoden zum Loggen auf die Konsole, 
+ 	in eine Datei und aus einer Datei bietet.
 
- Im MTCG.Testing befinden sich die Klassen, welche die Unit Testen zu kritischen Codeabschnitten beinhalten. 
+	 Im MTCG.Testing befinden sich die Klassen, welche die Unit Testen zu kritischen Codeabschnitten beinhalten. 
 
- MTCG.Core beinhaltet eine Klasse "User" in der sich sämtliche Informationen zum Benutzer wie: 
- username, password,name,bio,image,token,playedgames,wins,losses und elo befinden 
+	 MTCG.Core beinhaltet eine Klasse "User" in der sich sämtliche Informationen zum Benutzer wie: 
+ 	username, password,name,bio,image,token,playedgames,wins,losses und elo befinden 
  
- MTCG.Lib enthält die Klassen zu den verschiedenen Karten wie Monsterkarten, Zauberkarten und deren jeweiligen Unterklassen (Firespell, Kraken,etc..)
- Des Weiteren beinhaltet MTCG.LIB eine Klasse namens "Game", welche die Kampflogik abhandelt. 
- Die Klasse Package bekommt im Konstruktor fünf Karten aus denen eben das Package besteht. 
- TradeDeal ist eine Klasse in der sämtliche Informationen zu den bestehenden deals gespeichert werden wie: 
- id,cardToTrade,cardToTradeName,CardToTradeDmg,Type,minimumDamage
+ 	MTCG.Lib enthält die Klassen zu den verschiedenen Karten wie Monsterkarten, Zauberkarten und deren jeweiligen Unterklassen (Firespell, Kraken,etc..)
+ 	Des Weiteren beinhaltet MTCG.LIB eine Klasse namens "Game", welche die Kampflogik abhandelt. 
+ 	Die Klasse Package bekommt im Konstruktor fünf Karten aus denen eben das Package besteht. 
+ 	TradeDeal ist eine Klasse in der sämtliche Informationen zu den bestehenden deals gespeichert werden wie: 
+ 	id,cardToTrade,cardToTradeName,CardToTradeDmg,Type,minimumDamage
  
- Als letztes gibt es das Projekt MTCG.Server, welches die Bereitstellung des Servers ermöglicht und sämtlcihe Requests und Responses der Clients verwaltet
- Dieses Projekt hat zunächst einmal in einer Klasse den Aufbau eines solchen Requests festgelegt. 
- In der Hauptklasse des Projektes also dem HTTPServer erfolgt dann der Verbindungsaufbau mit den Clients, das Erstellen der Datenbank Tabellen im Konstruktor
- das Einlesen des Benutzer Requests und das dementsprechende reagieren auf den Request samt senden eines Responses. 
- Zugegebenermaßen ist in der Klasse einiges an Refactoring Bedarf notwendig und dies hätte verhindert werden können, wenn ich der SOLID Prinzipien
- bewusst gewesen wäre. 
+ 	Als letztes gibt es das Projekt MTCG.Server, welches die Bereitstellung des Servers ermöglicht und sämtlcihe Requests und Responses der Clients verwaltet
+ 	Dieses Projekt hat zunächst einmal in einer Klasse den Aufbau eines solchen Requests festgelegt. 
+ 	In der Hauptklasse des Projektes also dem HTTPServer erfolgt dann der Verbindungsaufbau mit den Clients, das Erstellen der Datenbank Tabellen im Konstruktor
+ 	das Einlesen des Benutzer Requests und das dementsprechende reagieren auf den Request samt senden eines Responses. 
+ 	Zugegebenermaßen ist in der Klasse einiges an Refactoring Bedarf notwendig und dies hätte verhindert werden können, wenn ich der SOLID Prinzipien
+ 	bewusst gewesen wäre. 
 
- Letztendlich funktioniert fast alles im Projekt so wie es soll nur ich bin mit der Schönheit des Codes absolut unzufrieden und hätte gerne noch daran
- gearbeitet um eben etwaige Schönheitsfehler auszubessern. 
+ 	Letztendlich funktioniert fast alles im Projekt so wie es soll nur ich bin mit der Schönheit des Codes absolut unzufrieden und hätte gerne noch daran
+ 	gearbeitet um eben etwaige Schönheitsfehler auszubessern. 
 
 unit test design
--
+-	Unit Tests wurden so ziemlich für jede Klasse erstellt und insgesamt umfasst das Projekt 21 Unit Tests. 
+ 	In der Test Klasse "CardTest" sind zwei Tests bei denen einerseits überprüft wird ob die Karte richtig instanziert wird und anderseits ob sie auch den 
+ 	korrekten Element Type hat. 
 
+	Die Testklasse "GameTest" beinhaltet Tests die das Eintreten der Special Rules testen aber auch den Kampf mit den normal rules also auch den check für
+	die Effectiveness im Bezug auf die beiden beteiligten Karten im Kampf
+ 
+	In der Testklasse "HTTPServerTest" wird ein Request Objekt anhand eines zerlegten Requests erstellt und geschaut ob es richtig instanziert wird
+
+	Die TestKlasse "MonsterCardTest" besteht aus Tests die überprüfen ob eine Monster Karte richtig instanziert wurde, ob ihr Schaden im gültigen Bereich ist
+	und ob der Element Type stimmt. 
+	
+	Die Testklasse "PackageTest" hat einen Test bei der überprüft ob ein Package richtig initialisiert wird
+
+	Die Testklasse "RequestContextTest" beinhaltet Tests in denen überprüft wird ob aus einem zerlegten Request ein RequestContext Objekt erzeugt werden kann
+ 
+	In der Testklasse "TradeDealsTest" wird überprüft ob aus einem zerlegten JSON Request ein Trade Objekt richtig erzeugt wird
+
+	In der Testklasse "UserTest" wird überprüft ob aus einem zerlegten JSON Request ein User Objekt richtig erzeugt wird
 time spent
--Anfangs hab ich das Ausmaß des Projektes unterschätzt, doch da ich rechtzeitig reagieren konnte bzw gegen Ende bis in die Nächte 
- immer dran gearbeitet habr, bin ich letztendlich "fertig" geworden und hab ungefähr 40 Stunden für das Projekt investiert. 
+-	Anfangs hab ich das Ausmaß des Projektes unterschätzt, doch da ich rechtzeitig reagieren konnte bzw gegen Ende bis in die Nächte 
+ 	immer dran gearbeitet habr, bin ich letztendlich "fertig" geworden und hab ungefähr 40 Stunden für das Projekt investiert. 
 
 link to git
--https://github.com/Avokaci/SWE1-MTCG
+-	https://github.com/Avokaci/SWE1-MTCG
