@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MonsterTradingCardGame.Lib\MTCG.Lib.csproj" />
+    <ProjectReference Include="..\MTCG.SERVER\MTCG.Server.csproj" />
   </ItemGroup>
 
 </Project>

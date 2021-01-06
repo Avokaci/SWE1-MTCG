@@ -27,5 +27,7 @@ namespace MonsterTradingCardGame.Testing
             //assert
             Assert.AreEqual(ElementType.fire, _card.Element);
         }
+
+     
     }
 }

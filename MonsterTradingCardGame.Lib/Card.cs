@@ -23,6 +23,16 @@ namespace MonsterTradingCardGame.Lib
 
         //access modifiers
         public ElementType Element { get => _element; set => _element = value; }
+        //public ElementType Element
+        //{
+        //    get => _element; set
+        //    {
+        //        if (name.Contains("Water")) { value = ElementType.water; }
+        //        if (name.Contains("Fire")) { value = ElementType.fire; }
+        //        if (name.Contains("Normal")) { value = ElementType.normal; }
+        //        if (name.Contains("Earth")) { value = ElementType.earth; }
+        //    }
+        //}
         public string Name { get => name; set => name = value; }
         public double Damage { get => damage; set { if (value >= 0 && value <= 100) { damage = value; } } }
 

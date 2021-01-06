@@ -125,7 +125,7 @@ namespace RESTHTTPWebservice
             }
         }
         //method to read request and process it
-        private void readRequest(TcpClient client)
+        public void readRequest(TcpClient client)
         {
             StreamReader sr = new StreamReader(client.GetStream());
             //header einlesen (verb, path, version)
@@ -161,7 +161,7 @@ namespace RESTHTTPWebservice
             req = new RequestContext(verb, path, httpVersion, headerLines, payload);
         }
         //method to react on the request and send a response 
-        private void doHTTPMethod(RequestContext req, TcpClient client)
+        public void doHTTPMethod(RequestContext req, TcpClient client)
         {
             string[] splittedPath = req.Path.Split("/");           
             if (req.Verb.Equals("GET"))
@@ -272,7 +272,6 @@ namespace RESTHTTPWebservice
                 //show stats for a user
                 if (splittedPath[1].Equals("stats"))
                 {
-                    bool closeSW = false;
                     string username = authenticateToken(req);
                     string[] splittedtoken = token.Split("-");        
                     foreach (User item in users)
@@ -299,7 +298,6 @@ namespace RESTHTTPWebservice
                                 "Elo: " + item.Elo + "\r\n" +
                                 "Win/Lose ratio: " + wlRatio); //OPTIONAL win lose ratio
                             sendResponse(client, "201 Created", req.HttpVersion, req.HeaderLines["Host"], responseMsg);
-                            closeSW = true;
                         }
                     }                    
                 }
@@ -350,7 +348,6 @@ namespace RESTHTTPWebservice
                 //check trading deals
                 if (splittedPath[1].Equals("tradings"))
                 {
-                    bool closeSW = false;
                     string username = authenticateToken(req);                  
                     foreach (User item in users)
                     {
@@ -587,7 +584,6 @@ namespace RESTHTTPWebservice
                 //WIP: battle procedure
                 if (splittedPath[1].Equals("battles"))
                 {
-                    bool closeSW = false;
                     string response ="";
                     string username = authenticateToken(req);
                     //Placeholder approach but couldnt solve it in the end... PROBLEM: handling 2 players
@@ -713,7 +709,6 @@ namespace RESTHTTPWebservice
                 if (splittedPath[1].Equals("tradings"))
                 {
                     string response = "";
-                    bool closeSW = false;
                     string username = authenticateToken(req);
                     TradeDeal deal = JsonSerializer.Deserialize<TradeDeal>(req.Payload);                 
                     foreach (User item in users)
@@ -887,7 +882,6 @@ namespace RESTHTTPWebservice
                 if (splittedPath[1].Equals("tradings"))
                 {
                     string response = "";
-                    bool closeSW = false;
                     string username = authenticateToken(req);
                     foreach (User item in users)
                     {
